@@ -7,14 +7,15 @@ html
 
         link(rel="icon", type="image/svg+xml", href="/favicon.svg")
         link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/darkTheme.css')
 
         //script(type="module", src='/javascripts/nquery.js')
-        script(type='module' src=scriptLink)
+        script(type='module' src='/javascripts/darkTheme.js')
         script(src='https://kit.fontawesome.com/9f34627289.js')
 
     body
         header
-            h1 Passport site
+            h1 YabbaYabbaYabba
             nav
                 ul
                     li
@@ -32,10 +33,12 @@ html
                         li
                             a(href="/users/about") About
                         li
-                            a(href="/users/register") Register
-                        li
                             a(href="/users/login") Login
-                        
+                div.theme-switch-wrapper
+                    label.theme-switch
+                        input#checkbox(type="checkbox")
+                        div.slider.round
+                           
         main
             block content
         footer
