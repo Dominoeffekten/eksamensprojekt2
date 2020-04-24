@@ -6,3 +6,6 @@
   
 <p><b>Mongo restore</b></p>
   <p>mongorestore -d world --drop dump/world</p>
+
+Installer nodemon: npm install -D nodemon
+I stedet for 'npm start' brug 'npm run dev' 
