@@ -1,0 +1,43 @@
+doctype html
+html
+    head
+        title= 'My first site'
+        meta(charset='utf-8')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+        link(rel="icon", type="image/svg+xml", href="/favicon.svg")
+        link(rel='stylesheet', href='/stylesheets/style.css')
+
+        //script(type="module", src='/javascripts/nquery.js')
+        script(type='module' src=scriptLink)
+        script(src='https://kit.fontawesome.com/9f34627289.js')
+
+    body
+        header
+            h1 Passport site
+            nav
+                ul
+                    li
+                        a(href="/") Home
+                    //logged in
+                    if user
+                        li
+                            a(href="/dashboard") Insiders
+                        li
+                            a(href="user") User
+                        li
+                            a(href="/users/logout") Logout
+                    // not logged in
+                    if !user
+                        li
+                            a(href="/users/about") About
+                        li
+                            a(href="/users/register") Register
+                        li
+                            a(href="/users/login") Login
+                        
+        main
+            block content
+        footer
+            div(id="cpy")
+                a(href="#") SoMe

@@ -1,0 +1,108 @@
+:root {
+    --background-color: #F885C1;
+    --background-color2: #F8D0D2;
+    --color: #2B92E4;
+    --text-color: #EFF2F8;
+    --white: #FFF;
+    --black: #000;
+    --grey: #788287;
+    --outline: 1px solid var(--color);
+}
+* {
+    box-sizing: border-box;
+}
+html, body {
+	height: 100%;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+main,header,nav,section,article,footer{
+	width:100%;
+	max-width:100%;
+}
+html {
+	overflow-y: scroll;
+}
+body {
+    display: flex;
+	flex-direction: column;
+	letter-spacing: 1px;
+	line-height: 21px;
+	margin: 15px;
+}
+h1{
+    float: left;
+    margin-left: 10px;
+}
+.imgDiv{
+    width: 60%;
+    margin: 20px auto;
+}
+img{
+    height: auto;
+    width: 100%;
+}
+footer{
+	outline: var(--outline);
+	padding: 17px 0;
+    color: var(--text-color);
+    text-align: center;
+}
+footer a{
+    text-decoration: none;
+    color: var(--black);
+}
+header {
+    text-align: right;
+    width: 100%;
+    outline: var(--outline);
+}
+header nav ul {
+    list-style: none;
+    margin-right: 10px;
+    text-align: right;
+}
+header nav ul li {
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+}
+header nav ul li a{
+    text-decoration: none;
+    color: var(--black);;
+}
+
+/* tabeller */
+table, th, td { 
+    margin: 0 auto;
+}
+/* input felter */
+form{
+	padding: 10px;
+    width: 50%;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+input[type=text], input[type=radio],input[type=checkbox],input[type=name],input[type=email],input[type=password], textarea, select {
+	border: none;
+	margin: 5px;
+    padding: 5px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    outline: var(--outline);
+}
+input[type=text]::placeholder, textarea::placeholder{
+	color: var(--grey);
+}
+input[type=button], input[type=submit], input[type=reset] {
+    border: none;
+    padding: 8px 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    outline: var(--outline);
+}
+hr {
+    margin: 20px 0;
+}
+.shadow {
+	box-shadow: 5px 5px 15px #cfcfcf;
+}
+
