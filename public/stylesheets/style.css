@@ -33,6 +33,10 @@ h1{
     float: left;
     margin-left: 10px;
 }
+a{
+    color: var(--color);
+    text-decoration: none;
+}
 .imgDiv{
     width: 60%;
     margin: 20px auto;
@@ -44,12 +48,7 @@ img{
 footer{
 	outline: var(--outline);
 	padding: 17px 0;
-    color: var(--text-color);
     text-align: center;
-}
-footer a{
-    text-decoration: none;
-    color: var(--black);
 }
 header {
     text-align: right;
@@ -82,7 +81,7 @@ form{
     border-radius: 12px;
     margin: 0 auto;
 }
-input[type=text], input[type=radio],input[type=checkbox],input[type=name],input[type=email],input[type=password], textarea, select {
+input[type=text], input[type=radio],input[type=checkbox],input[type=password], textarea, select {
 	border: none;
 	margin: 5px;
     padding: 5px;
