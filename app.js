@@ -7,13 +7,14 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const dbn = "yabba"; //database navn
 
 // Passport Config
 require('./config/passport')(passport);
 
 // DB Config and server connect
 const db = require('./config/keys').mongoURI;
-mongoose.connect('mongodb://localhost/node-auth', {
+mongoose.connect('mongodb://localhost/'+dbn, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true

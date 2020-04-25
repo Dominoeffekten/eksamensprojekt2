@@ -11,21 +11,29 @@ block content
         div(role='alert' id='a3') #{error_msg}
     if error != ''
         div(role='alert' id='a4') #{error}
-    
+
     form(action='/users/register' method='post').shadow
         table
             tr
-                td Name:
+                td Username:
                 td
-                    input(type='name' name='name' placeholder='firstname' required)
+                    input(type='text' name='username' placeholder='JohnDoe1' required)
+            tr
+                td First name:
+                td
+                    input(type='text' name='firstName' placeholder='John' required)
+            tr
+                td Last name:
+                td
+                    input(type='text' name='lastName' placeholder='Doe' required)
             tr
                 td Email:
                 td
-                    input(type='email' name='email' placeholder='n@mm.tld' required)
+                    input(type='email' name='email' placeholder='John@Doe.com' required)
             tr
                 td Password:
                 td
-                    input(type='password' name='password' placeholder='password, minimum 12 mixed characters' required)
+                    input(type='password' name='password' placeholder='password, minimum 6 mixed characters' required)
             tr
                 td Password confirm:
                 td

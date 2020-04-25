@@ -2,7 +2,10 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mongoose = require('mongoose');
 
-const User = require('../models/User');
+const User = require('../models/User'); 
+const Post = require('../models/Post');
+const Comment = require('../models/Comment');
+
 const saltRounds = 10;
 
 exports.register = function (req, res) {
@@ -17,10 +20,10 @@ exports.about = function (req, res) {
 };
 
 exports.postRegister = function (req, res) {
-    const { name, email, password, password2 } = req.body;
+    const { username, firstName, lastName, email, password, password2 } = req.body;
     let errors = [];
 
-    if (!name || !email || !password || !password2) {
+    if (!username || !firstName || !lastName || !email || !password || !password2) {
         errors.push({ msg: 'Please enter all fields' });
     }
 
@@ -35,44 +38,50 @@ exports.postRegister = function (req, res) {
     if (errors.length > 0) {
         res.render('register', {
             errors,
-            name,
+            username,
+            firstName,
+            lastName,
             email,
             password,
             password2
         });
     } else {
-        User.findOne({ email: email }).then( function (user) {
+        User.findOne({ username: username, email: email }).then( function (user) {
             if (user) {
-                errors.push({ msg: 'Email already exists' });
+                errors.push({ msg: 'Username or email already exists' });
                 res.render('register', {
                     errors,
-                    name,
+                    username,
+                    firstName,
+                    lastName,
                     email,
                     password,
                     password2
                 });
-              } else {
-                  const newUser = new User({
-                      name,
-                      email,
-                      password
-                  });
+            } else { 
+                const newUser = new User({
+                    username,
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                });
 
-                  bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
-                      if (err) throw err;
-                      newUser.password = hash;
-                      newUser
-                          .save()
-                          .then(user => {
-                              req.flash(
-                                  'success_msg',
-                                  'You are now registered and can log in'
-                              );
-                              res.redirect('/users/login');
-                          })
-                          .catch(err => console.log(err));
-                  });
-              }
+                bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
+                    if (err) throw err;
+                    newUser.password = hash;
+                    newUser
+                        .save()
+                        .then(user => {
+                            req.flash(
+                                'success_msg',
+                                'You are now registered and can log in'
+                            );
+                            res.redirect('/users/login');
+                        })
+                        .catch(err => console.log(err));
+                });
+            }
         });
     }
 };

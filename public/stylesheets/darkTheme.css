@@ -78,3 +78,13 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+/* Nav */
+header nav ul li a{
+    text-decoration: none;
+    color: var(--font-color);
+}
+/* footer */
+footer a{
+    color: var(--font-color);
+}

@@ -5,6 +5,7 @@ exports.frontpage = function (req, res) {
 };
 
 exports.dashboard = function (req,res) {
+    console.log(req.user);
     res.render('dashboard', {
         user: req.user
     });
