@@ -25,7 +25,7 @@ exports.user = function (req,res) {
 exports.darkTheme = function (req,res) {
     res.json(req.user);
 };
-exports.changeTheme = async function (req,res) {
+exports.changeTheme = async function (req, res, next) {
     console.log(req.user);
 
     if(req.user.darkTheme){
@@ -33,14 +33,11 @@ exports.changeTheme = async function (req,res) {
     }else{
         var change = true;
     } 
-    console.log(change);
-
-    var check = { _id: req.user._id };
-    let theme = new User({
-        _id: req.user._id,
-        darkTheme: change
-    });
-    let cs = await monWrap.upsert("localhost", "some", User, theme, check); 
-    console.log(cs);
-    res.redirect("user");
+    let users = userHandler.upsertUser(req, change);
+    //res.json(users);
+    res.redirect("user")
+    //console.log(cs);
+    /*res.render('user', {
+        user: req.user
+    });*/
 };

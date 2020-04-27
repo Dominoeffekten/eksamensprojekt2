@@ -1,46 +1,47 @@
 extends layout
 
 block content
-    h2 Register
-    if errors != undefined && errors.length != 0
-        each error in errors
-            div(role='alert' id='a1') #{error.msg}
-    if success_msg != ''
-        div(role='alert' id='a2') #{success_msg}
-    if error_msg != ''
-        div(role='alert' id='a3') #{error_msg}
-    if error != ''
-        div(role='alert' id='a4') #{error}
+    section
+        h2 Register
+        if errors != undefined && errors.length != 0
+            each error in errors
+                div(role='alert' id='a1') #{error.msg}
+        if success_msg != ''
+            div(role='alert' id='a2') #{success_msg}
+        if error_msg != ''
+            div(role='alert' id='a3') #{error_msg}
+        if error != ''
+            div(role='alert' id='a4') #{error}
 
-    form(action='/users/register' method='post').shadow
-        table
-            tr
-                td Username:
-                td
-                    input(type='text' name='username' placeholder='JohnDoe1' required)
-            tr
-                td First name:
-                td
-                    input(type='text' name='firstName' placeholder='John' required)
-            tr
-                td Last name:
-                td
-                    input(type='text' name='lastName' placeholder='Doe' required)
-            tr
-                td Email:
-                td
-                    input(type='email' name='email' placeholder='John@Doe.com' required)
-            tr
-                td Password:
-                td
-                    input(type='password' name='password' placeholder='password, minimum 6 mixed characters' required)
-            tr
-                td Password confirm:
-                td
-                    input(type='password' name='password2' placeholder='repeat password' required)
-            tr
-                td
-                td
-                    input(type='submit' value='Go')
-    p Have an account?&nbsp;
-        a(href='/users/login') Login
+        form(action='/users/register' method='post').shadow
+            table
+                tr
+                    td Username:
+                    td
+                        input(type='text' name='username' placeholder='JohnDoe1' required)
+                tr
+                    td First name:
+                    td
+                        input(type='text' name='firstName' placeholder='John' required)
+                tr
+                    td Last name:
+                    td
+                        input(type='text' name='lastName' placeholder='Doe' required)
+                tr
+                    td Email:
+                    td
+                        input(type='email' name='email' placeholder='John@Doe.com' required)
+                tr
+                    td Password:
+                    td
+                        input(type='password' name='password' placeholder='password, minimum 6 mixed characters' required)
+                tr
+                    td Password confirm:
+                    td
+                        input(type='password' name='password2' placeholder='repeat password' required)
+                tr
+                    td
+                    td
+                        input(type='submit' value='Go')
+        p Have an account?&nbsp;
+            a(href='/users/login') Login

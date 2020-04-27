@@ -4,15 +4,15 @@ const User = require("./User");
 const dbServer = "localhost";
 const dbName = "some";
 
-exports.upsertUser = async function (req) {
-    const user = new User({
-        username: req.body.username,
-        firstName: req.body.username,
-        lastName: req.body.username,
-        email: req.body.username,
+exports.upsertUser = async function (req, change) {
+    console.log(change)
+    var check = { _id: req.user._id };
+    let theme = new User({
+        _id: req.user._id,
+        darkTheme: change
     });
     try { 
-        let cs = await mon.upsert(dbServer, dbName, User, user, chk);   
+        let cs = await mon.upsert(dbServer, dbName, User, theme, check);   
         return;
 } catch(e) {
     console.error(e);

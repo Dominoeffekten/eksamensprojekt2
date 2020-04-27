@@ -19,30 +19,46 @@ main,header,nav,section,article,footer{
 	width:100%;
 	max-width:100%;
 }
+main, body, header{
+    display: flex;
+}
 html {
 	overflow-y: scroll;
 }
 body {
-    display: flex;
 	flex-direction: column;
 	letter-spacing: 1px;
 	line-height: 21px;
 	margin: 15px;
 }
+section{
+    width: 70%;
+    padding: 2%;
+}
+article{
+    width: 15%;
+    background-color: var(--color);
+    height: 100%;
+    padding: 1%;
+}
+    article nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    article nav ul li {
+        display: block;
+        padding-top: 15%;
+    }
+    article nav ul li a{
+        color: var(--black);
+    }
 h1{
-    float: left;
-    margin-left: 10px;
+    text-align: center;
 }
 a{
     color: var(--color);
     text-decoration: none;
-}
-.imgDiv{
-    width: 60%;
-    margin: 20px auto;
-}
-.avatar{
-    width: 10%;
 }
 img{
     height: auto;
@@ -54,37 +70,35 @@ footer{
     text-align: center;
 }
 header {
-    text-align: right;
     width: 100%;
     outline: var(--outline);
 }
-header nav ul {
-    list-style: none;
-    margin-right: 10px;
-    text-align: right;
+/* Alle */
+.imgDiv{
+    width: 60%;
+    margin: 20px auto;
 }
-header nav ul li {
-    display: inline;
-    margin-right: 5px;
-    padding: 3px;
+.avatar{
+    width: 10%;
 }
-header nav ul li a{
-    text-decoration: none;
-    color: var(--black);;
+.h1{
+    width: 70%;
 }
-
+.name{
+    width: 15%;
+}
 /* tabeller */
 table, th, td { 
     margin: 0 auto;
 }
 /* input felter */
 form{
-	padding: 10px;
-    width: 50%;
+	padding: 4%;
+    width: 90%;
     border-radius: 12px;
-    margin: 0 auto;
+    margin: 2% auto;
 }
-input[type=text], input[type=radio],input[type=checkbox],input[type=password], textarea, select {
+input[type=text], input[type=radio],input[type=checkbox],input[type=email],input[type=password], textarea, select {
 	border: none;
 	margin: 5px;
     padding: 5px;
@@ -106,5 +120,12 @@ hr {
 }
 .shadow {
 	box-shadow: 5px 5px 15px #cfcfcf;
+}
+
+/* annonce */
+.add{
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
 }
 

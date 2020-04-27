@@ -23,7 +23,8 @@ body {
 .theme-switch-wrapper {
     /*display: flex;
     align-items: center;*/
-    margin: 10px;
+    width: 15%;
+    padding: 1%;
 }
 .theme-switch-wrapper em {
     margin-left: 10px;
@@ -79,11 +80,6 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* Nav */
-header nav ul li a{
-    text-decoration: none;
-    color: var(--font-color);
-}
 /* footer */
 footer a{
     color: var(--font-color);

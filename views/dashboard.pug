@@ -1,18 +1,19 @@
 extends layout
 
 block content
-  h2 Dashboard
-  p Welcome to #{user.firstName} #{user.lastName}
+  section
+    h2 Dashboard
+    p Welcome to #{user.firstName} #{user.lastName}
 
-  form(action='/users/dashboard' method='post').shadow
-        table
-          tr
-            td
-              img(src="", alt="")
-          tr
-            td
-                textarea(name="text", cols="60", rows="5" placeholder="What is happening?")
-          tr
-            td
-            td
-              input(type='submit' value='Yab')
+    form(action='/users/dashboard' method='post').shadow
+          table
+            tr
+              td
+                img(src="", alt="")
+            tr
+              td
+                  textarea(name="text", cols="60", rows="5" placeholder="What is happening?")
+            tr
+              td
+              td
+                input(type='submit' value='Yab')
