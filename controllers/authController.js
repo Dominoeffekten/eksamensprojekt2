@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 
 const User = require('../models/User'); 
 const Post = require('../models/Post');
-const Comment = require('../models/Comment');
 
 const saltRounds = 10;
 
@@ -93,7 +92,7 @@ exports.login = function (req, res) {
 
 exports.postLogin = function (req, res, next) {
     passport.authenticate('local', {
-        successRedirect: '/dashboard',
+        successRedirect: '/user',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);

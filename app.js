@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
-const dbn = "yabba"; //database navn
+const dbn = "some"; //database navn
 
 // Passport Config
 require('./config/passport')(passport);
@@ -21,6 +21,11 @@ mongoose.connect('mongodb://localhost/'+dbn, {
     })
     .then( function() { console.log('mongoose connection open'); })
     .catch( function(err) { console.error(err); });
+
+
+
+
+
 
 const app = express();
 app.locals.pretty = app.get('env') === 'development';       // pretty print html

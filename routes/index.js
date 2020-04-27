@@ -9,4 +9,7 @@ router.get('/dashboard', ensureAuthenticated, idx.dashboard);
 
 router.get('/user', ensureAuthenticated, idx.user);
 
+router.get('/darkTheme', ensureAuthenticated, idx.darkTheme);
+router.get('/changeTheme', ensureAuthenticated, idx.changeTheme);
+
 module.exports = router;

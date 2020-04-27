@@ -1,5 +1,23 @@
 extends layout
 
 block content
-  h2 User site
-  p Only you can see this page
+  h2 Profile site 
+  img.avatar(src='images/avatar.jpeg' , alt='Avatar') 
+  p 
+    strong Dark theme 
+    | #{user.darkTheme}
+  p 
+    strong Username 
+    | #{user.username}
+  p 
+    strong Name 
+    | #{user.firstName} #{user.lastName}
+  p 
+    strong Email 
+    | #{user.email}
+  p 
+    strong Following 
+    | #{user.following}
+  p
+    strong Created 
+    span#date #{user.created}

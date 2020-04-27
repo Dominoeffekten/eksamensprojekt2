@@ -41,6 +41,9 @@ a{
     width: 60%;
     margin: 20px auto;
 }
+.avatar{
+    width: 10%;
+}
 img{
     height: auto;
     width: 100%;

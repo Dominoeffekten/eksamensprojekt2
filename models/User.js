@@ -6,8 +6,13 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  darkTheme: {
+    type: Boolean,
+    default: true
+  },
   approved: {
     type: Boolean,
+    default: false
   },
   email: {
     type: String,
@@ -20,15 +25,17 @@ const UserSchema = new mongoose.Schema({
   },
   firstName: {
     type: String,
+    required: true,
   },
   lastName: {
     type: String,
+    required: true,
   },
   avatar: { 
-    type: String 
+    type: String,
+    default: "images/avatar.jpeg"
   },
   following: [],
-  followers: [],
   created: {
     type: Date,
     default: Date.now
