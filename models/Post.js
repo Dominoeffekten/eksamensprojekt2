@@ -5,11 +5,6 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  postID: {
-    type: Number,
-    required: true,
-    unique: true
-  },
   picture: {
     type: String
   },
@@ -18,10 +13,28 @@ const PostSchema = new mongoose.Schema({
     required: true,
   },
   tag: [],
-  date: {
+  created: {
     type: Date,
     default: Date.now
-  }
+  },
+  comment: [ {
+    username: {
+      type: String,
+      required: true,
+    },
+    picture: {
+      type: String
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+    tag: [],
+    created: {
+      type: Date,
+      default: Date.now
+    }
+  } ]
 });
 
 const Post = mongoose.model('Post', PostSchema, 'post');

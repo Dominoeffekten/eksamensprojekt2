@@ -24,12 +24,12 @@ const UserSchema = new mongoose.Schema({
   lastName: {
     type: String,
   },
-  picture: { 
+  avatar: { 
     type: String 
   },
   following: [],
   followers: [],
-  date: {
+  created: {
     type: Date,
     default: Date.now
   }
