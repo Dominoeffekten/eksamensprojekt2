@@ -1,4 +1,5 @@
 const monWrap = require('../models/mongooseWrap'); 
+const userHandler = require('../models/userHandle'); 
 const User = require('../models/User'); 
 
 exports.frontpage = function (req, res) {
@@ -8,14 +9,14 @@ exports.frontpage = function (req, res) {
 };
 
 exports.dashboard = function (req,res) {
-    console.log(req.user);
+    //console.log(req.user);
     res.render('dashboard', {
         user: req.user
     });
 };
 
 exports.user = function (req,res) {
-    console.log(req.user);
+    //console.log(req.user);
     res.render('user', {
         user: req.user
     });
@@ -26,29 +27,20 @@ exports.darkTheme = function (req,res) {
 };
 exports.changeTheme = async function (req,res) {
     console.log(req.user);
-    console.log("Jeg kom ind");
-    var user = req.user;
 
-    if(user.darkTheme){
+    if(req.user.darkTheme){
         var change = false;
     }else{
         var change = true;
-    }
-    var check = { _id: user.id };
+    } 
+    console.log(change);
+
+    var check = { _id: req.user._id };
     let theme = new User({
+        _id: req.user._id,
         darkTheme: change
     });
-    try { 
-        let cs = await monWrap.upsert("localhost", "some", User, theme, check);  
-        console.log(cs);
-        res.render('user', {
-            user: req.user
-        });
-        return
-    } catch(e) {
-        console.error(e);
-    }
-    console.log(req.user);
-    //res.redirect("/user");
-    
+    let cs = await monWrap.upsert("localhost", "some", User, theme, check); 
+    console.log(cs);
+    res.redirect("user");
 };

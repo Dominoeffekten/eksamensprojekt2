@@ -9,6 +9,7 @@ router.get('/dashboard', ensureAuthenticated, idx.dashboard);
 
 router.get('/user', ensureAuthenticated, idx.user);
 
+//Dark Theme
 router.get('/darkTheme', ensureAuthenticated, idx.darkTheme);
 router.get('/changeTheme', ensureAuthenticated, idx.changeTheme);
 
