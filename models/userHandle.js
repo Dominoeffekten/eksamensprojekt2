@@ -5,11 +5,17 @@ const dbServer = "localhost";
 const dbName = "some";
 
 exports.upsertUser = async function (req, change) {
-    console.log(change)
-    var check = { _id: req.user._id };
-    let theme = new User({
+    console.log(change);
+    var check = { _id: req.user._id }; // check object for existence
+    let theme = new User({ // create obejct in db-format
+        darkTheme: change,
+        approved: req.user.approved,
+        avatar: req.user.avatar,
         _id: req.user._id,
-        darkTheme: change
+        username: req.user.username,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
+        email: req.user.email,
     });
     try { 
         let cs = await mon.upsert(dbServer, dbName, User, theme, check);   

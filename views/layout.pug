@@ -16,13 +16,14 @@ html
     body
         header
             div.theme-switch-wrapper
-                label.theme-switch
-                    input#checkbox(type="checkbox")
-                    div.slider.round
+                if user
+                    label.theme-switch
+                        input#checkbox(type="checkbox")
+                        div.slider.round
             div.h1
                 h1 YabbaYabbaYabba
-            if user
-                div.name
+            div.name
+                if user
                     //img.avatar(src='images/avatar.jpeg' alt='Avatar') 
                     p #{user.firstName} #{user.lastName}  
 
@@ -35,15 +36,15 @@ html
                         //logged in
                         if user
                             li
-                                a(href="/dashboard") Dashboard
+                                a(href="/user") Profile
                             li
-                                a(href="user") Profile
+                                a(href="/dashboard") Yabba
+                            li
+                                a(href="/#") Explore tags
                             li
                                 a(href="/users/logout") Logout
                         // not logged in
                         if !user
-                            li
-                                a(href="/users/about") About
                             li
                                 a(href="/users/login") Login
             block content

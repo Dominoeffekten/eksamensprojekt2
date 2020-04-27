@@ -5,7 +5,7 @@ const idx = require("../controllers/indexController");
 
 router.get('/', forwardAuthenticated, idx.frontpage);
 
-router.get('/dashboard', ensureAuthenticated, idx.dashboard);
+router.get('/dashboard', ensureAuthenticated, idx.getDashboard);
 
 router.get('/user', ensureAuthenticated, idx.user);
 

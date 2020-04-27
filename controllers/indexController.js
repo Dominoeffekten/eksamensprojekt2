@@ -2,30 +2,30 @@ const monWrap = require('../models/mongooseWrap');
 const userHandler = require('../models/userHandle'); 
 const User = require('../models/User'); 
 
-exports.frontpage = function (req, res) {
+exports.frontpage = function (req, res) { //frontpage
     res.render('index', {
         
     });
 };
 
-exports.dashboard = function (req,res) {
+exports.getDashboard = function (req,res) { //the post site
     //console.log(req.user);
     res.render('dashboard', {
         user: req.user
     });
 };
 
-exports.user = function (req,res) {
+exports.user = function (req,res) { //the profil site
     //console.log(req.user);
     res.render('user', {
         user: req.user
     });
 };
 
-exports.darkTheme = function (req,res) {
+exports.darkTheme = function (req,res) { //Checks what theme the user has
     res.json(req.user);
 };
-exports.changeTheme = async function (req, res, next) {
+exports.changeTheme = async function (req, res, next) { //change the theme
     console.log(req.user);
 
     if(req.user.darkTheme){
@@ -33,11 +33,7 @@ exports.changeTheme = async function (req, res, next) {
     }else{
         var change = true;
     } 
-    let users = userHandler.upsertUser(req, change);
-    //res.json(users);
-    res.redirect("user")
-    //console.log(cs);
-    /*res.render('user', {
-        user: req.user
-    });*/
+    let users = await userHandler.upsertUser(req, change);
+    console.log(users);
+    res.redirect("user");
 };

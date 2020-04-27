@@ -8,8 +8,6 @@ const { forwardAuthenticated } = require('../config/auth');
 router.get('/register', forwardAuthenticated, auth.register);
 router.post('/register', auth.postRegister);
 
-router.get('/about', auth.about);
-
 router.get('/login', forwardAuthenticated, auth.login);
 router.post('/login', auth.postLogin);
 

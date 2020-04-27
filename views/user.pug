@@ -2,22 +2,23 @@ extends layout
 
 block content
   section
-    h2 Profile site 
-    img.avatar(src='images/avatar.jpeg' , alt='Avatar') 
-    h3 #{user.username}
-    p 
-      strong Dark theme 
-      | #{user.darkTheme}
-    p 
-      strong Name 
-      | #{user.firstName} #{user.lastName}
-    p 
-      strong Email 
-      | #{user.email}
+    h2 #{user.username}
+    div.avatar
+      img(src='images/avatar.jpeg' , alt='Avatar') 
+      div
+        p 
+          strong Name 
+          | #{user.firstName} #{user.lastName}
+        p 
+          strong Email 
+          | #{user.email}
+        p 
+          strong Created 
+          | #{user.created}
     p 
       strong Following 
       | #{user.following}
-    p
-      strong Created 
-      span#date #{user.created}
+    p 
+      strong Dark theme 
+      | #{user.darkTheme}
 

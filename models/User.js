@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   },
   darkTheme: {
     type: Boolean,
-    default: true
+    default: false
   },
   approved: {
     type: Boolean,

@@ -19,7 +19,7 @@ main,header,nav,section,article,footer{
 	width:100%;
 	max-width:100%;
 }
-main, body, header{
+main, body, header, .avatar{
     display: flex;
 }
 html {
@@ -79,8 +79,14 @@ header {
     margin: 20px auto;
 }
 .avatar{
-    width: 10%;
+    
 }
+    .avatar img{
+        width: 19%;
+        border-radius: 100%;
+        margin-right: 2%;
+    }
+
 .h1{
     width: 70%;
 }
