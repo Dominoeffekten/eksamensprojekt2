@@ -93,10 +93,7 @@ exports.postPost = async function (req, res, next) {
         text: req.body.text
     });
     let cs = mon.create(Post, post);
-    res.render('dashboard', {
-        title: "YabbaYabbaYabba",
-        user: req.user
-    });
+    res.redirect('/dashboard');
 };
 
 exports.login = function (req, res) {

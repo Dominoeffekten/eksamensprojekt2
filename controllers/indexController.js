@@ -15,9 +15,11 @@ exports.frontpage = function (req, res) { //frontpage
 };
 
 exports.getDashboard = async function (req,res) { //the post site
+    let posts = await mon.retrieve(Post, {}, { sort: {created: -1}});
     res.render('dashboard', {
         title: "YabbaYabbaYabba", 
-        user: req.user
+        user: req.user,
+        posts: posts
     });
 };
 
@@ -50,10 +52,15 @@ exports.changeTheme = async function (req, res, next) { //change the theme
         var change = true;
     } 
     let users = await userHandler.upsertUser(req, change);
+    res.redirect(req.get('referer'));
 };
 
 exports.getPost = async function (req, res, next) { // henter opslagene
     let post = await postHandler.getPost({}, {created: 1});
     res.json(post);
-    console.log(post)
+};
+exports.getUsers = async function (req, res, next) { // henter opslagene
+    let user = await mon.retrieve(User, {}, {});
+    console.log(user);
+    res.json(user);
 };

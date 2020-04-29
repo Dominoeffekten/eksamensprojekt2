@@ -14,3 +14,17 @@ block content
             input(type='submit' value='Yabba')
 
         div#posts
+            each post in posts
+                div.post
+                    div.profileImage
+                        img(class=`avatar${post.username}` src="images/placeholder.jpeg")
+                    div.postContent
+                        div.row
+                            p= post.username
+                            p(id=`created${post._id}`)= post.created
+                        div.postText
+                            h3= post.text
+                        div.postImage
+                            img(src=`${post.picture}` alt="test")
+                        div.postReplies
+                            p 0 Comments

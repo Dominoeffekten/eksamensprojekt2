@@ -9,18 +9,37 @@ const getPost = function (ev) {
     req.getFile("/getPost", showPosts);
 };
 
+const getUser = function (ev) {
+    let req = Object.create(Ajax);
+    req.init();
+    req.getFile("/getUsers", showUsers);
+};
+
 const showPosts = function (e) {
-    $('posts').innerHTML = "You need to follow some people";
-    
-    let userPosts = JSON.parse(e.target.responseText);
-    console.log(userPosts)
+    let posts = JSON.parse(e.target.responseText);
+
+    for (var i = 0; i < posts.length; i++) {
+        let link = $("created" + posts[i]._id);
+        link.innerHTML = posts[i].created.split("T")[0];
+    }
+}
+
+const showUsers = function (e) {
+    let users = JSON.parse(e.target.responseText);
+    console.log(users);
+    let posts = document.getElementsByClassName("profileImage");
+    for (var i = 0; i < users.length; i++) {
+    	let className = document.getElementsByClassName("avatar" + users[i].username);
+    	for (var j = 0; j < className.length; j++) {
+    		className[j].setAttribute("src", users[i].avatar)
+    	}
+    }
 }
 
 
 const init = function () {
-    if ($('posts')) {   // on the right page
-        getPost();
-    }
+    getPost();
+    getUser();
 };
 
 window.addEventListener('load', init);

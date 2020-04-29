@@ -246,12 +246,16 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 #content {
     position:absolute;
-    top:75px;
+    top:0px;
     left:20%;
     width:65%;
     background-color: var(--color2);
-    padding:50px;
-    height:100%;
+    padding:100px 50px;
+}
+#content form {
+    border-bottom:1px solid black;
+    padding-bottom:25px;
+    margin-bottom:25px;
 }
 /* profil */
 #profileHead {
@@ -278,4 +282,32 @@ input[type=button], input[type=submit], input[type=reset] {
 #profileInfo {
     padding:75px;
     text-align:left;
+}
+.post {
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    background-color:rgba(255,255,255,0.4);
+    padding:10px;
+    margin:10px 0;
+}
+.profileImage {
+    width:10%;
+}
+.profileImage img {
+    margin:auto;
+    display:block;
+    width:50px;
+    height:50px;
+    border-radius:50px;
+}
+.postContent {
+    width:90%;
+}
+.row {
+    display:flex;
+    justify-content: space-between;
+}
+.postText {
+    padding:15px 0;
 }

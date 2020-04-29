@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 // mongoose.set('debug', { color: false });
 
 //Læser
-exports.retrieve = async function(url, dbn, obj, query, sort) {
+exports.retrieve = async function(obj, query, sort) {
     let stuff = null;
     try {
         stuff = await obj.find(query, null, sort);
