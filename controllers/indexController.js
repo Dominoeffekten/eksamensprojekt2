@@ -1,5 +1,6 @@
 const mon = require('../models/mongooseWrap'); 
 const userHandler = require('../models/userHandle'); 
+const postHandler = require('../models/postHandle'); 
 
 const dbServer = "localhost";
 const dbName = "some";
@@ -50,3 +51,8 @@ exports.changeTheme = async function (req, res, next) { //change the theme
     let users = await userHandler.upsertUser(req, change);
     res.redirect("/user");
 };
+
+exports.getPost = async function (req, res, next) { // henter opslagene
+    let post = await postHandler.getPost({}, {});
+    res.json(post);
+}

@@ -6,7 +6,7 @@ const idx = require("../controllers/indexController");
 router.get('/', forwardAuthenticated, idx.frontpage);
 
 router.get('/dashboard', ensureAuthenticated, idx.getDashboard);
-
+router.get('/getPost', ensureAuthenticated, idx.getPost); //henter opslagene
 router.get('/tags', ensureAuthenticated, idx.getTags);
 
 router.get('/user', ensureAuthenticated, idx.user);
@@ -14,5 +14,4 @@ router.get('/user', ensureAuthenticated, idx.user);
 //Dark Theme
 router.get('/darkTheme', ensureAuthenticated, idx.darkTheme);
 router.get('/changeTheme', ensureAuthenticated, idx.changeTheme);
-
 module.exports = router;
