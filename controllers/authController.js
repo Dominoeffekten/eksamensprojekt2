@@ -83,7 +83,7 @@ exports.postRegister = function (req, res) {
     }
 };
 
-exports.postPost = function (req, res) {
+exports.postPost = async function (req, res, next) {
     console.log(req.body);
     let check = {};
     let post = new Post({
