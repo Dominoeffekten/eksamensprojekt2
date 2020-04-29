@@ -32,6 +32,7 @@ exports.getTags = function (req,res) { //the post site
 exports.user = function (req,res) { //the profil site
     //console.log(req.user);
     res.render('user', {
+        title: "YabbaYabbaYabba",
         user: req.user,
         avatar: req.user.avatar
     });
