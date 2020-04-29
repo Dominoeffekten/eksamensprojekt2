@@ -46,3 +46,14 @@ exports.remove = async function(url, dbn, obj, name) {
         return stuff;
     }
 }
+
+exports.create = async function(obj, query) {
+    let rc = null;
+    try { 
+        rc = await obj.create(query);
+    } catch(err) {
+        console.log(error);
+    } finally {
+        return rc;
+    }
+};
