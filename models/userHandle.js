@@ -16,6 +16,7 @@ exports.upsertUser = async function (req, change) {
         firstName: req.user.firstName,
         lastName: req.user.lastName,
         email: req.user.email,
+        following: req.user.following,
     });
     try { 
         let cs = await mon.upsert(User, theme, check); 
