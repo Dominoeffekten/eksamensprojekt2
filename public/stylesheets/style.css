@@ -1,25 +1,34 @@
 
 :root {
     --background-color: #FFD8C3;
-    --color: #C1EAE8;
+    --color: #F2986D;
+    --color2: #C1EAE8;
     --font-color: #4B4B4B;
     --white: #f2f2f2;
-    --black: #F2986D;
-    --header-footer: #F2986D;
+    --black: #232323;
     --grey: #5F5F5F;
-    --heading: #664CA7;
+    --heading: #5E7376;
     --links: #DE5E05;
-    --outline: 1px solid var(--color);
+    --hover: #DE5E05;
+    --gradient: linear-gradient(180deg, var(--color2),var(--background-color));
+    --yabbaLink: var(--white);
+    --input: var(--white);
 }
 
 [data-theme="dark"] {
-    --background-color: #9A97F3;
-    --color: #818cab;
-    --font-color: #e1e1ff;
+    --background-color: #9996F2;
+    --color: #544EF4;
+    --color2: #272573;
+    --font-color: var(--white);
     --white: #f2f2f2;
     --black: #232323;
-    --grey: #788287;
-    --outline: 1px solid var(--color);
+    --grey: #2E373B;
+    --heading: #F2E396;
+    --links: #F2E33C;
+    --hover: #F2C03C;
+    --gradient: linear-gradient(180deg, var(--color2),var(--background-color));
+    --yabbaLink: var(--black);
+    --input: var(--heading);
 }
 * {
     box-sizing: border-box;
@@ -29,7 +38,7 @@ html, body {
     margin:0;
 	height: 100%;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-image:linear-gradient(180deg, var(--color),var(--background-color));
+    background-image: var(--gradient);
     background-position: right top;
 }
 main,header,nav,section,article,footer{
@@ -78,6 +87,7 @@ input[type=text], input[type=radio],input[type=checkbox],input[type=email],input
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     margin-bottom:10px;
     font-size: 16px;
+    background-color: var(--input);
 }
 input[type=text]::placeholder, textarea::placeholder{
 	color: var(--grey);
@@ -94,33 +104,35 @@ input[type=button], input[type=submit], input[type=reset] {
     width:100%;
     padding: 8px 16px;
     cursor: pointer;
-    background-color:var(--black);
+    background-color:var(--color);
     color: var(--white);
     margin-top:15px;
     font-size: 16px;
-}
 
+}
+/* header */
 #header {
-    background-color:var(--black);
+    background-color:var(--color);
     color:var(--white);
     display:flex;
     justify-content: space-between;
     padding:0 25px;
 }
-#header div  {width:100%;}
-#header div:nth-child(3) {
-    display:flex;
-    flex-direction: row-reverse;
-}
-#header div a {
-    color:var(--whitek);
-    font-size:15px;
-    padding:15px;
-}
-#header h2 {
-    font-size:20px;
-    text-align:center;
-}
+    #header div  {width:100%;}
+    #header div:nth-child(3) {
+        display:flex;
+        flex-direction: row-reverse;
+    }
+    #header div a {
+        color:var(--white);
+        font-size:15px;
+        padding:15px;
+    }
+    #header h2 {
+        font-size:20px;
+        text-align:center;
+    }
+/* log ind */
 #logReg {
     width:100%;
     padding:100px 15px;
@@ -134,9 +146,16 @@ input[type=button], input[type=submit], input[type=reset] {
     margin:auto;
     text-align:left;
 }
+    /* media */
+    @media screen and (min-width:900px) {
+        #logReg form {width:25%;}
+        #logReg h1 {font-size:50px;}
+        #logReg p {font-size:20px;}
+    }
+/* footer */
 #footer {
     position:fixed;
-    background-color:var(--black);
+    background-color:var(--color);
     bottom:0;
     width:100%;
     padding:0;
@@ -151,11 +170,7 @@ input[type=button], input[type=submit], input[type=reset] {
         border:none;
         outline:none;
     }
-@media screen and (min-width:900px) {
-    #logReg form {width:25%;}
-    #logReg h1 {font-size:50px;}
-    #logReg p {font-size:20px;}
-}
+/* navigation */
 #navigation {
     position:fixed;
     top:75px;
@@ -165,36 +180,34 @@ input[type=button], input[type=submit], input[type=reset] {
     height:100%;
     z-index:10;
     padding:50px;
-    border-right:1px solid var(--black);
     display:flex;
     justify-content: space-between;
     flex-direction: column;
 }
-#navigation a {
-    display:block;
-    color:var(--black);
-    font-size:22px;
-    padding:25px 0;
-}
-#navigation div:nth-child(2) a {
-    background-color:var(--black);
-    color:var(--white);
-    text-align:center;
-    padding:15px 0;
-    border-radius:50px;
-    margin-bottom:100px;
-}
-#navigation a:hover {color:var(--grey);}
+    #navigation a {
+        display:block;
+        color:var(--links);
+        font-size:22px;
+        padding:25px 0;
+    }
+    #navigation div:nth-child(2) a {
+        background-color:var(--links);
+        color:var(--yabbaLink);
+        text-align:center;
+        padding:15px 0;
+        border-radius:50px;
+        margin-bottom:100px;
+    }
+    #navigation a:hover {color:var(--hover);}
 #navHead {
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:75px;
-    background-color:var(--white);
+    background-color:var(--color);
     z-index:10;
     display:flex;
-    border-bottom:1px solid var(--black);
 }
 #navHead div {
     width:100%;
@@ -209,7 +222,7 @@ input[type=button], input[type=submit], input[type=reset] {
     flex-direction: row-reverse;
     justify-content: inherit;
 }
-#navHead div:nth-child(3) a {color:var(--black);}
+#navHead div:nth-child(3) a {color:var(--white);}
 #navHead div:nth-child(3) a:nth-child(2) {margin:25px 8px;}
 
 #navHead div:nth-child(3) img {
@@ -219,27 +232,28 @@ input[type=button], input[type=submit], input[type=reset] {
     border-radius:50px;
     margin:10px;
     margin-right:50px;
-    border:1px solid var(--black);
+    border:1px solid var(--white);
 }
+/* annonce */
 #commercial {
     position: fixed;
     top:75px;
     right:0;
     width:15%;
     height:100%;
-    background-color:var(--white);
+    background-color:var(--background-color);
     z-index:10;
-    border-left:1px solid;
 }
 #content {
     position:absolute;
     top:75px;
     left:20%;
     width:65%;
-    background-color:var(--white);
+    background-color: var(--color2);
     padding:50px;
-    height:3000px;
+    height:100%;
 }
+/* profil */
 #profileHead {
     width:100%;
     display:flex;
