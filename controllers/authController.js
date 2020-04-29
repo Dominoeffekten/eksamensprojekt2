@@ -83,7 +83,7 @@ exports.postRegister = function (req, res) {
     }
 };
 
-exports.postPost = function (req, res) {
+exports.postPost = async function (req, res, next) {
     console.log(req.body);
     let check = {};
     let post = new Post({
@@ -92,7 +92,7 @@ exports.postPost = function (req, res) {
         tag: req.body.tag,
         text: req.body.text
     });
-    let cs = mon.upsert(dbServer, dbName, Post, post, check);
+    let cs = await mon.upsert(dbServer, dbName, Post, post, check);
     res.render('dashboard', {
         title: "YabbaYabbaYabba",
         user: req.user
