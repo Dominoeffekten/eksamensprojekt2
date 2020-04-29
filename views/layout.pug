@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        title= 'My first site'
+        title= title
         meta(charset='utf-8')
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
@@ -14,41 +14,4 @@ html
         script(src='https://kit.fontawesome.com/9f34627289.js')
 
     body
-        header
-            div.theme-switch-wrapper
-                if user
-                    label.theme-switch
-                        input#checkbox(type="checkbox")
-                        div.slider.round
-            div.h1
-                h1 YabbaYabbaYabba
-            div.name
-                if user
-                    //img.avatar(src='images/avatar.jpeg' alt='Avatar') 
-                    p #{user.firstName} #{user.lastName}  
-
-        main
-            article
-                nav
-                    ul
-                        li
-                            a(href="/") Home
-                        //logged in
-                        if user
-                            li
-                                a(href="/user") Profile
-                            li
-                                a(href="/dashboard") Yabba
-                            li
-                                a(href="/#") Explore tags
-                            li
-                                a(href="/users/logout") Logout
-                        // not logged in
-                        if !user
-                            li
-                                a(href="/users/login") Login
-            block content
-            article
-                div.add
-        footer
-            p &copy; 2020
+        block content

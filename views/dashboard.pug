@@ -1,15 +1,14 @@
 extends layout
 
 block content
-  section
-    h2 Dashboard
-    p Welcome to #{user.firstName} #{user.lastName}
+    include nav.pug
+    include footer.pug
+    section#content
+        h2 Dashboard
+        p Welcome to #{user.firstName} #{user.lastName}
 
-    form(action='/users/dashboard' method='post').shadow
-          table
-            tr
-              td
-                  textarea(name="text", cols="80", rows="5" placeholder="What is happening?")
-            tr
-              td
-                input(type='submit' value='Yabba')
+        form(action='/users/post' method='post')
+            textarea(type="text" name="text" placeholder="What is happening?")
+            input(type="text" name="tag" placeholder="Tags")
+            input(type="file" name="picture" multiple)
+            input(type='submit' value='Yabba')

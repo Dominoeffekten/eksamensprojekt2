@@ -38,7 +38,7 @@ exports.upsert = async function(url, dbn, obj, query, chk) {
     delete newquery._id;                  
     try {
       stuff = await obj.updateOne(chk, newquery, {     
-      upsert: true                                        
+      upsert: true                                       
       });
     } catch(err) {
         console.log(error);
@@ -64,5 +64,3 @@ exports.remove = async function(url, dbn, obj, name) {
         return stuff;
     }
 }
-
-

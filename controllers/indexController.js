@@ -1,16 +1,29 @@
-const monWrap = require('../models/mongooseWrap'); 
+const mon = require('../models/mongooseWrap'); 
 const userHandler = require('../models/userHandle'); 
+
+const dbServer = "localhost";
+const dbName = "some";
+
 const User = require('../models/User'); 
+const Post = require('../models/Post');
 
 exports.frontpage = function (req, res) { //frontpage
-    res.render('index', {
-        
+    res.render('login', {
+        title: "YabbaYabbaYabba"
     });
 };
 
-exports.getDashboard = function (req,res) { //the post site
-    //console.log(req.user);
+exports.getDashboard = async function (req,res) { //the post site
     res.render('dashboard', {
+        title: "YabbaYabbaYabba", 
+        user: req.user
+    });
+};
+
+exports.getTags = function (req,res) { //the post site
+    //console.log(req.user);
+    res.render('tags', {
+        title: "YabbaYabbaYabba", 
         user: req.user
     });
 };
@@ -18,7 +31,8 @@ exports.getDashboard = function (req,res) { //the post site
 exports.user = function (req,res) { //the profil site
     //console.log(req.user);
     res.render('user', {
-        user: req.user
+        user: req.user,
+        avatar: req.user.avatar
     });
 };
 

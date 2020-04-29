@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    include nav.pug
+    include footer.pug
+    section#content
+        h2 Hi #{user.firstName} #{user.lastName}
+        p Search
+
+        form(action='/users/dashboard' method='post').shadow
+            input(type="text" name="tag" placeholder="Tags, users or Yabba's")
+            input(type='submit' value='Search')

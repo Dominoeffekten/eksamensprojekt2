@@ -1,24 +1,37 @@
 extends layout
 
 block content
-  section
-    h2 #{user.username}
-    div.avatar
-      img(src='images/avatar.jpeg' , alt='Avatar') 
-      div
-        p 
-          strong Name 
-          | #{user.firstName} #{user.lastName}
-        p 
-          strong Email 
-          | #{user.email}
-        p 
-          strong Created 
-          | #{user.created}
-    p 
-      strong Following 
-      | #{user.following}
-    p 
-      strong Dark theme 
-      | #{user.darkTheme}
-
+  include nav.pug
+  include footer.pug
+  section#content
+    div#profileHead
+        div#avatar
+            img(src=avatar alt='Avatar')
+        div#profile
+            h2 #{user.username}
+            div#follow
+                div
+                    p Opslag
+                    p#postCount 0
+                div
+                    p Followers
+                    p#followersCount 0
+                div
+                    p Following
+                    p#followingCount 0
+            div#profileInfo
+                p 
+                    strong Name 
+                    | #{user.firstName} #{user.lastName}
+                p 
+                    strong Email 
+                    | #{user.email}
+                p 
+                    strong Created 
+                    | #{user.created}
+                p 
+                    strong Following 
+                    | #{user.following}
+                p 
+                    strong Dark theme 
+                    | #{user.darkTheme}

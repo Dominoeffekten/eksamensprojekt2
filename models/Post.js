@@ -18,11 +18,11 @@ const PostSchema = new mongoose.Schema({
     default: Date.now
   },
   replyTo: {
-    type: String
+    type: String,
+    default: "none"
   }
 });
 
 const Post = mongoose.model('Post', PostSchema, 'post');
 
 module.exports = Post;
-

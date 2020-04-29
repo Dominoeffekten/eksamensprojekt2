@@ -1,6 +1,9 @@
 const bcrypt = require('bcryptjs');
+const mon = require('../models/mongooseWrap'); 
 const passport = require('passport');
 const mongoose = require('mongoose');
+const dbServer = "localhost";
+const dbName = "some";
 
 const User = require('../models/User'); 
 const Post = require('../models/Post');
@@ -9,12 +12,7 @@ const saltRounds = 10;
 
 exports.register = function (req, res) {
     res.render('register', {
-
-    });
-};
-
-exports.about = function (req, res) {
-    res.render('about', {
+        title: "YabbaYabbaYabba"
     });
 };
 
@@ -85,14 +83,31 @@ exports.postRegister = function (req, res) {
     }
 };
 
+exports.postPost = function (req, res) {
+    console.log(req.body);
+    let check = {};
+    let post = new Post({
+        username: req.user.username,
+        picture: req.body.picture,
+        tag: req.body.tag,
+        text: req.body.text
+    });
+    let cs = mon.upsert(dbServer, dbName, Post, post, check);
+    res.render('dashboard', {
+        title: "YabbaYabbaYabba",
+        user: req.user
+    });
+};
+
 exports.login = function (req, res) {
     res.render('login', {
+        title: "YabbaYabbaYabba"
     });
 };
 
 exports.postLogin = function (req, res, next) {
     passport.authenticate('local', {
-        successRedirect: '/user',
+        successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);

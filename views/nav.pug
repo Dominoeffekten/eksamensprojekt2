@@ -1,0 +1,30 @@
+div#navHead
+	div.theme-switch-wrapper
+		if user
+			label.theme-switch
+				input#checkbox(type="checkbox")
+				div.slider.round
+	div
+		h2= title
+	div
+		if user
+			a(href="/user") 
+				img.avatar(src=user.avatar alt='Avatar') 
+			a(href="/user") #{user.firstName} #{user.lastName} 
+div#navigation
+	div
+		a(href="/dashboard") Home
+		a(href="/tags") #Tags
+		a(href="/user") Profile
+		a(href="/users/logout") Logout
+	div
+		a(href="/dashboard#content") Write Yabba
+div#commercial
+	h1 R
+	h1 E
+	h1 K
+	h1 L
+	h1 A
+	h1 M
+	h1 E
+	h1 R

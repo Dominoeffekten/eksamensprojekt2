@@ -7,6 +7,8 @@ router.get('/', forwardAuthenticated, idx.frontpage);
 
 router.get('/dashboard', ensureAuthenticated, idx.getDashboard);
 
+router.get('/tags', ensureAuthenticated, idx.getTags);
+
 router.get('/user', ensureAuthenticated, idx.user);
 
 //Dark Theme
