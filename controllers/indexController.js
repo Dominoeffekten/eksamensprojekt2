@@ -50,10 +50,10 @@ exports.changeTheme = async function (req, res, next) { //change the theme
         var change = true;
     } 
     let users = await userHandler.upsertUser(req, change);
-    res.redirect("/user");
 };
 
 exports.getPost = async function (req, res, next) { // henter opslagene
     let post = await postHandler.getPost({}, {created: 1});
     res.json(post);
+    console.log(post)
 };

@@ -10,6 +10,8 @@ const getPost = function (ev) {
 };
 
 const showPosts = function (e) {
+    $('posts').innerHTML = "You need to follow some people";
+    
     let userPosts = JSON.parse(e.target.responseText);
     console.log(userPosts)
 }
