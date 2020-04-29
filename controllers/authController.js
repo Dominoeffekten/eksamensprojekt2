@@ -92,7 +92,7 @@ exports.postPost = function (req, res) {
         tag: req.body.tag,
         text: req.body.text
     });
-    let cs = mon.upsert(dbServer, dbName, Post, post, check);
+    let cs = mon.upsert(Post, post, check);
     res.render('dashboard', {
         title: "YabbaYabbaYabba",
         user: req.user

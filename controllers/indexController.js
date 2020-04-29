@@ -48,6 +48,5 @@ exports.changeTheme = async function (req, res, next) { //change the theme
         var change = true;
     } 
     let users = await userHandler.upsertUser(req, change);
-    console.log(users);
-    res.redirect("user");
+    res.redirect("/user");
 };

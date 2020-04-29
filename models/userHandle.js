@@ -18,7 +18,7 @@ exports.upsertUser = async function (req, change) {
         email: req.user.email,
     });
     try { 
-        let cs = await mon.upsert(dbServer, dbName, User, theme, check);   
+        let cs = await mon.upsert(User, theme, check); 
         return;
 } catch(e) {
     console.error(e);
@@ -27,7 +27,7 @@ exports.upsertUser = async function (req, change) {
 
 exports.getUser = async function (query, sort) {
     try {
-        let cs = await mon.retrieve(dbServer, dbName, User, query, sort);
+        let cs = await mon.retrieve(User, query, sort);
         return cs;
     } catch (e) {
         console.error(e);
@@ -36,7 +36,7 @@ exports.getUser = async function (query, sort) {
 
 exports.delUser = async function (name) {
     try {
-        let cs = await mon.remove(dbServer, dbName, User, name);
+        let cs = await mon.remove(User, name);
         return cs;
     } catch (e) {
         console.log(e);
