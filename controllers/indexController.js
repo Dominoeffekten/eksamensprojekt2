@@ -53,6 +53,6 @@ exports.changeTheme = async function (req, res, next) { //change the theme
 };
 
 exports.getPost = async function (req, res, next) { // henter opslagene
-    let post = await postHandler.getPost({}, {});
+    let post = await postHandler.getPost({}, {created: 1});
     res.json(post);
-}
+};
