@@ -92,7 +92,7 @@ exports.postPost = async function (req, res, next) {
         tag: req.body.tag,
         text: req.body.text
     });
-    let cs = mon.create(Post, post);
+    let cs = await mon.create(Post, post);
     res.redirect('/dashboard');
 };
 
