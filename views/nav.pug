@@ -8,9 +8,9 @@ div#navHead
 		h2= title
 	div
 		if user
-			a(href="/user") 
-				img.avatar(src=user.avatar alt='Avatar') 
-			a(href="/user") #{user.firstName} #{user.lastName} 
+			a(href="/user")
+				img.avatar(src=user.avatar alt='Avatar')
+			a(href="/user") #{user.firstName} #{user.lastName}
 div#navigation
 	div
 		a(href="/dashboard") Home
@@ -20,11 +20,5 @@ div#navigation
 	div
 		a(href="/dashboard#content") Write Yabba
 div#commercial
-	h1 R
-	h1 E
-	h1 K
-	h1 L
-	h1 A
-	h1 M
-	h1 E
-	h1 R
+	a(href="https://www.harald-nyborg.dk/" target="_blank")
+		img(src='images/reklame1.png', alt='login')

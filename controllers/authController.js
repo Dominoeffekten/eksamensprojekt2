@@ -1,16 +1,27 @@
 const bcrypt = require('bcryptjs');
-const mon = require('../models/mongooseWrap'); 
+const mon = require('../models/mongooseWrap');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const dbServer = "localhost";
 const dbName = "some";
 
-const User = require('../models/User'); 
+const User = require('../models/User');
 const Post = require('../models/Post');
 
 const saltRounds = 10;
 
+
 exports.register = function (req, res) {
+  /*
+    const errors = validationResult(request);
+
+    if(!errors.isEmpty()) {       // validator check
+      request.session.feedback = {
+        errors: errors.array(),
+      };
+      return response.redirect('/users/login')
+    };
+    */
     res.render('register', {
         title: "YabbaYabbaYabba"
     });
@@ -55,7 +66,7 @@ exports.postRegister = function (req, res) {
                     password,
                     password2
                 });
-            } else { 
+            } else {
                 const newUser = new User({
                     username,
                     firstName,
