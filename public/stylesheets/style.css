@@ -15,16 +15,16 @@
 }
 
 [data-theme="dark"] {
-  --background-color: #9996f2;
-  --color: #544ef4;
-  --color2: #272573;
+  --background-color: #28293D;
+  --color: #33333D;
+  --color2: #1C1C28;
   --font-color: var(--white);
   --white: #f2f2f2;
   --black: #232323;
   --grey: #2e373b;
-  --heading: #f2e396;
-  --links: #f2e33c;
-  --hover: #f2c03c;
+  --heading: #DEA5E9;
+  --links: #DEA5E9;
+  --hover: #AAEFF2;
   --gradient: linear-gradient(180deg, var(--color2), var(--background-color));
   --yabbaLink: var(--black);
   --input: var(--heading);
