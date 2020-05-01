@@ -97,12 +97,14 @@ exports.postRegister = function (req, res) {
 };
 
 exports.postPost = async function (req, res, next) {
-    console.log(req.body);
     upload(req, res, (error) => {
+        console.log(req.body);
+        console.log(req.file.filename);
+
         let check = {};
         let post = new Post({
             username: req.user.username,
-            picture: "images/upload/"+req.body.picture,
+            picture: "images/upload/"+req.file.filename,
             tag: req.body.tag,
             text: req.body.text
         });

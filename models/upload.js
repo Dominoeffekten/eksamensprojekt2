@@ -5,9 +5,9 @@ const path = require('path');
 
 /** Storage Engine */
 const storageEngine = multer.diskStorage({
-  destination: 'public/images/upload/',
+  destination: './public/images/upload/',
   filename: function(req, file, cb){
-    cb(null, path.extname(file.originalname));
+    cb(null, new Date().getTime().toString()+'-'+file.fieldname+path.extname(file.originalname));
   }
 }); 
 //init

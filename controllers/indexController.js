@@ -23,12 +23,20 @@ exports.getDashboard = async function (req,res) { //the post site
     });
 };
 
-exports.getTags = function (req,res) { //the post site
+exports.getTags = async function (req,res) { //the tags site
     //console.log(req.user);
     res.render('tags', {
         title: "YabbaYabbaYabba", 
-        user: req.user
+        user: req.user,
     });
+};
+
+exports.findTags = async function (req,res) { //Find the tags
+    //console.log(req.user);
+    console.log(req.body);
+    let posts = await mon.retrieve(Post, {}, {tags: 1});
+    //console.log(posts);
+    console.log(posts);
 };
 
 exports.user = function (req,res) { //the profil site
