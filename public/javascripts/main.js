@@ -3,6 +3,17 @@ import { isoFormat, parseISOString } from "./modules/Time.js";
 import { $ } from "./modules/nQuery.js";
 import { Ajax } from "./modules/Ajax.js";
 
+$("input").addEventListener("change", function() {
+    $("idSubmit").setAttribute("action", "/users/postImage");
+    $("idSubmit").setAttribute("enctype", "multipart/form-data");
+    var reader = new FileReader();
+    reader.onload = function(){
+        var output = $('output');
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+});
+
 const getPost = function (ev) {
     let req = Object.create(Ajax);
     req.init();
@@ -17,6 +28,7 @@ const getUser = function (ev) {
 
 const showPosts = function (e) {
     let posts = JSON.parse(e.target.responseText);
+    console.log(posts);
 
     for (var i = 0; i < posts.length; i++) {
         let link = $("created" + posts[i]._id);

@@ -44,6 +44,7 @@ router.post('/login',
 , auth.postLogin);
 
 // posting
+router.post('/postImage', auth.postImage);
 router.post('/post', auth.postPost);
 
 

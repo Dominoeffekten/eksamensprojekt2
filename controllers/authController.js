@@ -9,8 +9,8 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 
 const saltRounds = 10;
+const upload = require('../models/upload');//Billede vedhæftning
 
-var upload = require('../models/upload');//Billede vedhæftning
 
 
 exports.register = function (req, res) {
@@ -96,13 +96,11 @@ exports.postRegister = function (req, res) {
     }
 };
 
-exports.postPost = async function (req, res, next) {
+exports.postImage = async function (req, res, next) {
+    console.log(req.body);
     upload(req, res, (error) => {
-        console.log(req.body);
         console.log(req.file.filename);
         console.log(req.file);
-        
-        let check = {};
         let post = new Post({
             username: req.user.username,
             picture: "images/upload/"+req.file.filename,
@@ -112,7 +110,18 @@ exports.postPost = async function (req, res, next) {
         let cs = mon.create(Post, post);
         res.redirect('/dashboard');
     });
-    
+};
+
+exports.postPost = async function (req, res, next) {
+    console.log(req.body);
+    console.log(req.user);
+    let post = new Post({
+        username: req.user.username,
+        tag: req.body.tag,
+        text: req.body.text
+    });
+    let cs = mon.create(Post, post);
+    res.redirect('/dashboard');
 };
 
 exports.login = function (req, res) {

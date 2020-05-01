@@ -1,6 +1,5 @@
 const mon = require('../models/mongooseWrap'); 
-const userHandler = require('../models/userHandle'); 
-const postHandler = require('../models/postHandle'); 
+const userHandler = require('../models/userHandle');
 
 const dbServer = "localhost";
 const dbName = "some";
@@ -65,7 +64,7 @@ exports.changeTheme = async function (req, res, next) { //change the theme
 };
 
 exports.getPost = async function (req, res, next) { // henter opslagene
-    let post = await postHandler.getPost({}, {created: 1});
+    let post = await mon.retrieve(Post, {}, {created: 1});
     res.json(post);
 };
 exports.getUsers = async function (req, res, next) { // henter opslagene

@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
   },
   avatar: { 
     type: String,
-    default: "images/placeholder.jpeg"
+    default: "images/avatar.jpeg"
   },
   following: [{
     type: mongoose.Schema.Types.ObjectId,
