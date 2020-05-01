@@ -10,6 +10,8 @@ const Post = require('../models/Post');
 
 const saltRounds = 10;
 
+var upload = require('../models/upload');//Billede vedhæftning
+
 
 exports.register = function (req, res) {
   /*
@@ -96,15 +98,19 @@ exports.postRegister = function (req, res) {
 
 exports.postPost = async function (req, res, next) {
     console.log(req.body);
-    let check = {};
-    let post = new Post({
-        username: req.user.username,
-        picture: req.body.picture,
-        tag: req.body.tag,
-        text: req.body.text
+    
+    upload(req, res,(error) => {
+        let check = {};
+        let post = new Post({
+            username: req.user.username,
+            picture: "images/upload/"+req.body.picture,
+            tag: req.body.tag,
+            text: req.body.text
+        });
+        let cs = mon.create(Post, post);
+        res.redirect('/dashboard');
     });
-    let cs = await mon.create(Post, post);
-    res.redirect('/dashboard');
+    
 };
 
 exports.login = function (req, res) {

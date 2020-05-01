@@ -22,11 +22,6 @@ mongoose.connect('mongodb://localhost/'+dbn, {
     .then( function() { console.log('mongoose connection open'); })
     .catch( function(err) { console.error(err); });
 
-
-
-
-
-
 const app = express();
 app.locals.pretty = app.get('env') === 'development';       // pretty print html
 

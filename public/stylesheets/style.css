@@ -95,6 +95,7 @@ input[type="radio"],
 input[type="checkbox"],
 input[type="email"],
 input[type="password"],
+input[type="file"], 
 textarea,
 select {
   border: none;

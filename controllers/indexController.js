@@ -44,7 +44,7 @@ exports.darkTheme = function (req,res) { //Checks what theme the user has
     res.json(req.user);
 };
 exports.changeTheme = async function (req, res, next) { //change the theme
-    console.log(req.user);
+    //console.log(req.user);
 
     if(req.user.darkTheme){
         var change = false;
@@ -61,6 +61,6 @@ exports.getPost = async function (req, res, next) { // henter opslagene
 };
 exports.getUsers = async function (req, res, next) { // henter opslagene
     let user = await mon.retrieve(User, {}, {});
-    console.log(user);
+    //console.log(user);
     res.json(user);
 };
