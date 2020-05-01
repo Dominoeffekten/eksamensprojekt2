@@ -98,8 +98,7 @@ exports.postRegister = function (req, res) {
 
 exports.postPost = async function (req, res, next) {
     console.log(req.body);
-    
-    upload(req, res,(error) => {
+    upload(req, res, (error) => {
         let check = {};
         let post = new Post({
             username: req.user.username,

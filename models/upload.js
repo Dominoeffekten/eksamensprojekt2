@@ -1,11 +1,13 @@
+//https://github.com/programmer-blog/nodejs-file-upload-with-mongodb/blob/master/routes/upload.js
+//http://expressjs.com/en/resources/middleware/multer.html
 const multer = require('multer');
-const path   = require('path');
+const path = require('path');
 
 /** Storage Engine */
 const storageEngine = multer.diskStorage({
-  destination: './public/images/upload',
-  filename: function(req, file, fn){
-    fn(null,  new Date().getTime().toString()+'-'+file.fieldname+path.extname(file.originalname));
+  destination: 'public/images/upload/',
+  filename: function(req, file, cb){
+    cb(null, path.extname(file.originalname));
   }
 }); 
 //init
@@ -15,7 +17,8 @@ const upload =  multer({
   fileFilter: function(req, file, callback){
     validateFile(file, callback);
   }
-}).single('photo');
+}).single('picture');
+
 var validateFile = function(file, cb ){
   allowedFileTypes = /jpeg|jpg|png|gif/;
   const extension = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
@@ -26,4 +29,5 @@ var validateFile = function(file, cb ){
     cb("Invalid file type. Only JPEG, PNG and GIF file are allowed.")
   }
 }
+
 module.exports = upload;

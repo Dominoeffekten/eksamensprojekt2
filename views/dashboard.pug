@@ -10,7 +10,7 @@ block content
         form(action='/users/post' method='post')
             textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
             input(type="text" name="tag" placeholder="Tags")
-            input(type="file" name="picture" multiple)
+            input(type="file" name="picture" enctype="multipart/form-data")
             input(type='submit' value='Yabba')
 
         div#posts
