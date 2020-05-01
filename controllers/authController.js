@@ -100,7 +100,8 @@ exports.postPost = async function (req, res, next) {
     upload(req, res, (error) => {
         console.log(req.body);
         console.log(req.file.filename);
-
+        console.log(req.file);
+        
         let check = {};
         let post = new Post({
             username: req.user.username,

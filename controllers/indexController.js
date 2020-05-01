@@ -34,9 +34,10 @@ exports.getTags = async function (req,res) { //the tags site
 exports.findTags = async function (req,res) { //Find the tags
     //console.log(req.user);
     console.log(req.body);
-    let posts = await mon.retrieve(Post, {}, {tags: 1});
+    let posts = await mon.retrieve(Post, {tag: req.body}, {tags: 1});
     //console.log(posts);
     console.log(posts);
+    res.redirect("/tags");
 };
 
 exports.user = function (req,res) { //the profil site
