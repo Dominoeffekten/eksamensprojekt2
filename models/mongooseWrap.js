@@ -35,7 +35,7 @@ exports.upsert = async function(obj, query, chk) {
 }
 
 //Sletter
-exports.remove = async function(url, dbn, obj, name) {
+exports.remove = async function(obj, name) {
     let stuff = null;
     try {
         stuff = await obj.deleteOne(name, (err) => {});

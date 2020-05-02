@@ -39,12 +39,30 @@ exports.findTags = async function (req,res) { //Find the tags
     res.redirect("/tags");
 };
 
-exports.user = function (req,res) { //the profil site
+exports.user = async function (req,res) { //the profil site
+    let checkPost = {username: req.user.username}
+    let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
     //console.log(req.user);
     res.render('user', {
         title: "YabbaYabbaYabba",
         user: req.user,
-        avatar: req.user.avatar
+        avatar: req.user.avatar,
+        posts: cp
+    });
+};
+
+exports.readUser = async function (req, res) { // load profile page for clicked user
+    let checkUser = {username: req.body.username}
+    let cu = await mon.retrieve(User, checkUser, {});
+    let checkPost = {username: req.body.username}
+    let cp = await mon.retrieve(Post, checkPost, {})
+    console.log(cu);
+    console.log(cp);
+    res.render('profile', {
+        title: "YabbaYabbaYabba",
+        user: req.user,
+        profile: cu,
+        posts: cp
     });
 };
 

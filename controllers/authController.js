@@ -124,6 +124,12 @@ exports.postPost = async function (req, res, next) {
     res.redirect('/dashboard');
 };
 
+exports.postDelete = async function (req, res, next) {
+    let check = {_id: req.body._id}
+    let cs = mon.remove(Post, check);
+    res.redirect('/dashboard');
+};
+
 exports.login = function (req, res) {
     res.render('login', {
         title: "YabbaYabbaYabba"

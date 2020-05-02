@@ -1,13 +1,13 @@
 extends layout
 
 block content
-    include nav.pug
-    include footer.pug
-    section#content
-        h2 Hi #{user.firstName} #{user.lastName}
-        p Search
-
-        form(action='/findTags' method='post').shadow
-            input(type="text" name="tag" placeholder="Tags, users or Yabba's")
-            input(type='submit' value='Search')
-        div#tags
+		include nav.pug
+		include footer.pug
+		section#content
+			div.content
+				h2 Hi #{user.firstName} #{user.lastName}
+				p Search
+				form(action='/findTags' method='post').shadow
+					input(type="text" name="tag" placeholder="Tags, users or Yabba's")
+					input(type='submit' value='Search')
+				div#tags

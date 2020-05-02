@@ -8,6 +8,7 @@ router.get('/', forwardAuthenticated, idx.frontpage);
 router.get('/dashboard', ensureAuthenticated, idx.getDashboard);
 router.get('/getPost', ensureAuthenticated, idx.getPost); //henter opslagene
 router.get('/getUsers', ensureAuthenticated, idx.getUsers); //henter users
+router.post('/userPage', ensureAuthenticated, idx.readUser);   // Reads user page
 
 router.get('/tags', ensureAuthenticated, idx.getTags);
 router.post('/findTags', ensureAuthenticated, idx.findTags);

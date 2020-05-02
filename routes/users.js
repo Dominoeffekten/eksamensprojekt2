@@ -44,8 +44,10 @@ router.post('/login',
 , auth.postLogin);
 
 // posting
-router.post('/postImage', auth.postImage);
-router.post('/post', auth.postPost);
+router.post('/postImage', auth.postImage);  // post med billede
+router.post('/post', auth.postPost);    // post uden billede
+router.post('/delPost', auth.postDelete);   // delete post
+
 
 
 
