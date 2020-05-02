@@ -1,11 +1,11 @@
 # eksamensprojekt2
 
 <h2>Mongo</h2>
-<p><b>Mongo backup</b></p>
-  <p>mongodump -d world</p>
-  
-<p><b>Mongo restore</b></p>
-  <p>mongorestore -d world --drop dump/world</p>
+<p>Databasen ligger ikke lokalt. <br> For at få adgang til siden skal der oprettes en bruger, så kan alle opslag ses. </p>
+
+<p><b>Adgang til Mongo i terminalen</b></p>
+<p>"mongodb+srv://yabba-aampa.mongodb.net/test" --username JohnDoe123 <br>
+Adgangskoden er: "JohnDoe123" </p>
 
 <h2>Nodemon</h2>
 <p><b>Installer nodemon</b></p>
