@@ -132,28 +132,46 @@ exports.postPost = async function (req, res, next) {
     console.log(cs);
     res.redirect('/dashboard');
 };
-
-exports.postDelete = async function (req, res, next) {
+exports.postDelete = async function (req, res, next) { //Delete post
     let check = {_id: req.body._id}
     let cs = mon.remove(Post, check);
     res.redirect('/dashboard');
 };
+exports.postReply = async function (req, res, next) {
+    console.log(req.body);
+    //console.log(req.user);
 
-exports.login = function (req, res) {
+    //Splitter tags fra hinanden
+    let text = req.body.text;
+    console.log(text);
+    let tags = /(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)/g;
+    let tagSplit = text.toLowerCase().match(tags);
+    console.log(tagSplit);
+
+    let post = new Post({
+        username: req.user.username,
+        tag: tagSplit,
+        text: req.body.text,
+        replyTo: req.body.replyTo
+    });
+    let cs = await mon.create(Post, post);
+    console.log(cs);
+    res.redirect('/dashboard');
+};
+
+exports.login = function (req, res) { // vis login siden
     res.render('login', {
         title: "YabbaYabbaYabba"
     });
 };
-
-exports.postLogin = function (req, res, next) {
+exports.postLogin = function (req, res, next) { //login
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);
 };
-
-exports.logout = function (req, res) {
+exports.logout = function (req, res) { //log ud
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
