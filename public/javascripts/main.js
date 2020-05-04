@@ -33,17 +33,17 @@ const showPosts = function (e) {
     for (var i = 0; i < posts.length; i++) {
         let link = $("created" + posts[i]._id);
         link.innerHTML = posts[i].created.split("T")[0];
+        
+        /*
+        let text = posts[i].text;
+        console.log(text);
+        let tags = /(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)/g;
+        var resultat = text.match(tags);
+        console.log(resultat);
+       // $("postText").innerHTML += resultat
+        */
     }
 }
-
-const tagSplit = function (e) {
-    let tags = JSON.parse(e.target.responseText);
-    console.log(tags)
-    for (var i = 0; i < tags.length; i++) {
-        var str = $("tag" + tags[i]._id);
-        str.innerHTML = tags[i].tag.split(' ')[0];
-    }
-  }
 
 const showUsers = function (e) {
     let users = JSON.parse(e.target.responseText);

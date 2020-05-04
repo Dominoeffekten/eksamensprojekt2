@@ -115,12 +115,20 @@ exports.postImage = async function (req, res, next) {
 exports.postPost = async function (req, res, next) {
     console.log(req.body);
     console.log(req.user);
+
+    
+    let text = req.body.text;
+    console.log(text);
+    let tags = /(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)/g;
+    let tagSplit = text.match(tags);
+
     let post = new Post({
         username: req.user.username,
-        tag: req.body.tag,
+        tag: tagSplit,
         text: req.body.text
     });
-    let cs = mon.create(Post, post);
+    let cs = await mon.create(Post, post);
+    console.log(cs);
     res.redirect('/dashboard');
 };
 
