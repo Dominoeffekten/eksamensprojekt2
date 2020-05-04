@@ -34,7 +34,20 @@ const showPosts = function (e) {
         let link = $("created" + posts[i]._id);
         link.innerHTML = posts[i].created.split("T")[0];
     }
+
+    for (var i = 0; i < tags.length; i++) {
+        var str = $("tag" + tags[i]._id);
+        str.innerHTML = tags[i].tag.split(' ')[0];
 }
+
+/*const tagSplit = function (e) {
+    let tags = JSON.parse(e.target.responseText);
+
+    for (var i = 0; i < tags.length; i++) {
+        var str = $("tag" + tags[i]._id);
+        str.innerHTML = tags[i].tag.split(' ')[0];
+    }
+  }*/
 
 const showUsers = function (e) {
     let users = JSON.parse(e.target.responseText);
