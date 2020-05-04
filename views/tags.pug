@@ -11,3 +11,45 @@ block content
 					input(type="text" name="tag" placeholder="Tags, users or Yabba's")
 					input(type='submit' value='Search')
 				div#tags
+					each post in posts
+						div.post
+							div.row
+								div.row
+									div.profileImage
+										img(class=`avatar${post.username}` src="images/placeholder.jpeg")
+									div
+										if post.username != user.username
+											div.usernameLink
+												form(action="/userPage" method="post")
+													input(type="hidden" name="username" value=`${post.username}`)
+													input(type="submit" value=`${post.username}`)
+										else
+											div.usernameLink
+												a(href="/user")= user.username
+										div
+											label(id=`created${post._id}`)= post.created
+								div
+									if user.username === post.username
+										form(class="postdel" action="/users/delPost" method="post")
+											input(type="hidden" name="_id" value=`${post._id}`)
+											button(type="submit") 
+												i(class="fas fa-trash-alt")
+							div.postText#postText
+									h3= post.text
+							if post.picture != "none"
+								div.postImage
+										img(src=`${post.picture}` alt="test")
+							div.postReplies
+								div(style="width:100%;")
+									//p#tags #{post.tag}
+									// br
+									p 0 Comments
+								div(style="width:100%;")
+									div.comment
+										div.profileImage
+											img(class=`avatar${post.username}` src="images/placeholder.jpeg")
+										form(action="postReply" method="post")
+												textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
+												//input(type="text" name="tag" placeholder="Tags")
+												input(type="hidden" name="replyTo" value=`${post._id}`)
+												input(type="submit" value="Send")

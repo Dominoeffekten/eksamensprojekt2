@@ -24,19 +24,25 @@ exports.getDashboard = async function (req,res) { //the post site
 
 exports.getTags = async function (req,res) { //the tags site
     //console.log(req.user);
+    let posts = await mon.retrieve(Post, {}, {created: 1});
     res.render('tags', {
         title: "YabbaYabbaYabba", 
         user: req.user,
+        posts: posts
     });
 };
 
 exports.findTags = async function (req,res) { //Find the tags
     //console.log(req.user);
-    console.log(req.body);
-    let posts = await mon.retrieve(Post, {tag: req.body}, {tags: 1});
-    //console.log(posts);
+    console.log(req.body.tag);
+    let posts = await mon.retrieve(Post, {tag:req.body.tag}, {created: 1});
     console.log(posts);
-    res.redirect("/tags");
+    //console.log(posts);
+    res.render('tags', {
+        title: "YabbaYabbaYabba", 
+        user: req.user,
+        posts: posts
+    });
 };
 
 exports.user = async function (req,res) { //the profil site

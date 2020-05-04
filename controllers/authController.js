@@ -116,7 +116,7 @@ exports.postPost = async function (req, res, next) {
     console.log(req.body);
     console.log(req.user);
 
-    
+    //Splitter tags fra hinanden
     let text = req.body.text;
     console.log(text);
     let tags = /(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)/g;
