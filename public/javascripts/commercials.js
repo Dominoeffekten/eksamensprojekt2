@@ -1,6 +1,7 @@
 'use strict';
 
 import { $ } from "./modules/nQuery.js";
+import { Ajax } from "./modules/Ajax.js";
 
 let commercial = [
     'dplay.png',
@@ -14,7 +15,7 @@ let commercial = [
 ];
 
 let changeCommercial = function () {
-
+    let req = Object.create(Ajax);
     let randomCommercial = Math.floor(Math.random() * commercial.length);
     $('reklame').src = `images/commercial/${commercial[randomCommercial]}`;
     console.log(`Reklamen der sættes ind er: ${commercial[randomCommercial]}`)
