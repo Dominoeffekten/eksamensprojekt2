@@ -62,7 +62,7 @@ exports.readUser = async function (req, res) { // load profile page for clicked 
     let checkUser = {username: req.body.username}
     let cu = await mon.retrieve(User, checkUser, {});
     let checkPost = {username: req.body.username}
-    let cp = await mon.retrieve(Post, checkPost, {})
+    let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
     console.log(cu);
     console.log(cp);
     res.render('profile', {
