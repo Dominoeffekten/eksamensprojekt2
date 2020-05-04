@@ -120,7 +120,8 @@ exports.postPost = async function (req, res, next) {
     let text = req.body.text;
     console.log(text);
     let tags = /(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)/g;
-    let tagSplit = text.match(tags);
+    let tagSplit = text.toLowerCase().match(tags);
+    console.log(tagSplit);
 
     let post = new Post({
         username: req.user.username,

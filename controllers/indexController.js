@@ -35,7 +35,8 @@ exports.getTags = async function (req,res) { //the tags site
 exports.findTags = async function (req,res) { //Find the tags
     //console.log(req.user);
     console.log(req.body.tag);
-    let posts = await mon.retrieve(Post, {tag:req.body.tag}, {created: 1});
+    let lowerCase = req.body.tag.toLowerCase();
+    let posts = await mon.retrieve(Post, {tag: lowerCase}, {created: 1});
     console.log(posts);
     //console.log(posts);
     res.render('tags', {
