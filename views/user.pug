@@ -28,18 +28,12 @@ block content
                     strong Email 
                     | #{user.email}
                 p 
-                    strong Created 
-                    | #{user.created}
-                p 
                     strong Following 
                     | #{user.following}
-                p 
-                    strong Dark theme 
-                    | #{user.darkTheme}
     div.content
         div#posts
                 each post in posts
-                    div.post
+                    div.post#yabbaPost
                         div.row
                             div.row
                                 div.profileImage
@@ -69,6 +63,6 @@ block content
                                         img(src=user.avatar)
                                     form(action="postReply" method="post")
                                             textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
-                                            input(type="text" name="tag" placeholder="Tags")
+                                            //input(type="text" name="tag" placeholder="Tags")
                                             input(type="hidden" name="replyTo" value=`${post._id}`)
                                             input(type="submit" value="Send")

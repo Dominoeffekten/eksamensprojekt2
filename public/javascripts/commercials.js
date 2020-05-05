@@ -18,7 +18,7 @@ let changeCommercial = function () {
     let req = Object.create(Ajax);
     let randomCommercial = Math.floor(Math.random() * commercial.length);
     $('reklame').src = `images/commercial/${commercial[randomCommercial]}`;
-    console.log(`Reklamen der sættes ind er: ${commercial[randomCommercial]}`)
+    //console.log(`Reklamen der sættes ind er: ${commercial[randomCommercial]}`)
 };
 
 window.addEventListener("load", changeCommercial);

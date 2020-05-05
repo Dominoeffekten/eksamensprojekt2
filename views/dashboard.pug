@@ -22,7 +22,7 @@ block content
             div#posts
                 each post in posts
                     if post.replyTo === 'none' 
-                        div.post
+                        div.post#yabbaPost
                             div.row
                                 div.row
                                     div.profileImage
@@ -50,7 +50,7 @@ block content
                                 div.postImage
                                         img(src=`${post.picture}` alt="test")
                             div.postReplies
-                                div(style="width:100%;")
+                                div#commentReplies(style="width:100%;")
                                     //p#tags #{post.tag}
                                     // br
                                     p 0 Comments

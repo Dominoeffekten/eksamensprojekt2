@@ -49,6 +49,7 @@ exports.findTags = async function (req,res) { //Find the tags
 exports.user = async function (req,res) { //the profil site
     let checkPost = {username: req.user.username}
     let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
+    //let user = await mon.retrieve(User, {}, {});
     //console.log(req.user);
     res.render('user', {
         title: "YabbaYabbaYabba",
@@ -89,7 +90,7 @@ exports.changeTheme = async function (req, res, next) { //change the theme
 };
 
 exports.getPost = async function (req, res, next) { // henter opslagene
-    let post = await mon.retrieve(Post, {}, {sort: {created: -1}});
+    let post = await mon.retrieve(Post, {}, {});
     res.json(post);
 };
 exports.getUsers = async function (req, res, next) { // henter opslagene
