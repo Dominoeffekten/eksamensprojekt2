@@ -98,3 +98,9 @@ exports.getUsers = async function (req, res, next) { // henter opslagene
     //console.log(user);
     res.json(user);
 };
+
+exports.getComments = async function (req, res, next) { // henter opslagene
+    let comment = await mon.retrieve(Post, {replyTo: { $exists: true} }, {});
+    //console.log(user);
+    res.json(comment);
+};

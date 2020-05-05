@@ -64,21 +64,17 @@ const showUsers = function (e) { //viser avatar billedet
 function showComment(e) {
     let posts = JSON.parse(e.target.responseText);
     console.log("kommentar");
-    //console.log(posts)
+    var objNone = [];
+    var objReply = []
+    console.log(posts);
     //console.log(posts[i])
-
+    let id = "5eb00008770af51b0a5d634a"
     for (var i = 0; i < posts.length; i++) {
-        //console.log(posts[i]);
-        
-        if (posts[i].replyTo === "none"){ //Finder alle
-            console.log(posts[i]._id);
-            console.log(posts[i].replyTo);
-        }
-
         if (posts[i].replyTo != "none"){ //finder dem som er kommentar
-            
+        //if (posts[i].replyTo === id){
+            console.log(posts[i].replyTo)
+           
             console.log("re " + posts[i].replyTo)
-    /*
             console.log("picture "+posts[i].picture);
             console.log("replyto "+posts[i].replyTo);
             console.log("tag "+posts[i].tag);
@@ -128,10 +124,9 @@ function showComment(e) {
             row1.appendChild(postDIV);
 
             $('commentReplies').appendChild(commentDIV); 
-            */
         }
     }
-}
+};
 
 
 const init = function () {

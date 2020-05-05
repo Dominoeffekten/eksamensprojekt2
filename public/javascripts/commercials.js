@@ -6,11 +6,11 @@ import { $ } from "./modules/nQuery.js";
 let commercial = [
     {
         link: 'https://www.dplay.dk/',
-        picture: 'dplay.jpg'
+        picture: 'dplay1.jpg'
     },
     {
         link: 'https://www.dplay.dk/',
-        picture: 'dplay1.jpg'
+        picture: 'dplay2.jpg'
     },
     {
         link: 'https://www.dplay.dk/',
