@@ -14,6 +14,7 @@ if (counter >= 160) {
 } else {
   countRemaining.style.display = "block";
 }*/
-let el = $('character_counter').addEventListener('keyup', countCharacters, false);
+let el = $('character_counter')
+el.addEventListener('keyup', countCharacters, false);
 
-window.addEventListener('load', el);
+window.addEventListener('load', countCharacters, el);
