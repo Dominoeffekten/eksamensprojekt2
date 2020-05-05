@@ -24,7 +24,7 @@ exports.getDashboard = async function (req,res) { //the post site
 
 exports.getTags = async function (req,res) { //the tags site
     //console.log(req.user);
-    let posts = await mon.retrieve(Post, {}, {created: 1});
+    let posts = await mon.retrieve(Post, {}, {sort: {created: -1}});
     res.render('tags', {
         title: "YabbaYabbaYabba", 
         user: req.user,
@@ -36,7 +36,7 @@ exports.findTags = async function (req,res) { //Find the tags
     //console.log(req.user);
     console.log(req.body.tag);
     let lowerCase = req.body.tag.toLowerCase();
-    let posts = await mon.retrieve(Post, {tag: lowerCase}, {created: 1});
+    let posts = await mon.retrieve(Post, {tag: lowerCase}, {sort: {created: -1}});
     console.log(posts);
     //console.log(posts);
     res.render('tags', {
@@ -89,7 +89,7 @@ exports.changeTheme = async function (req, res, next) { //change the theme
 };
 
 exports.getPost = async function (req, res, next) { // henter opslagene
-    let post = await mon.retrieve(Post, {}, {created: 1});
+    let post = await mon.retrieve(Post, {}, {sort: {created: -1}});
     res.json(post);
 };
 exports.getUsers = async function (req, res, next) { // henter opslagene

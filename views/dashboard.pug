@@ -63,20 +63,3 @@ block content
                                                 //input(type="text" name="tag" placeholder="Tags")
                                                 input(type="hidden" name="replyTo" value=`${post._id}`)
                                                 input(type="submit" value="Send")
-                    if post.replyTo === post._id
-                        div.post
-                            div.row
-                                div.row
-                                    div.profileImage
-                                        img(class=`avatar${post.username}` src="images/placeholder.jpeg")
-                                    div
-                                        if post.username != user.username
-                                            div.usernameLink
-                                                form(action="/userPage" method="post")
-                                                    input(type="hidden" name="username" value=`${post.username}`)
-                                                    input(type="submit" value=`${post.username}`)
-                                        else
-                                            div.usernameLink
-                                                a(href="/user")= user.username
-                                            div
-                                                label(id=`created${post._id}`)= post.created

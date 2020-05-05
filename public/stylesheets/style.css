@@ -471,6 +471,6 @@ input[type="reset"] {
   margin:0;
   padding:0 10px;
   width:auto;
-  color:var(--white);
+  color:var(--font-color);
   font-size:20px;
 }
