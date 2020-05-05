@@ -64,9 +64,8 @@ const showUsers = function (e) { //viser avatar billedet
 function showComment(e) {
     let posts = JSON.parse(e.target.responseText);
     console.log("kommentar");
-    var objNone = [];
-    var objReply = []
-    console.log(posts);
+    
+    //console.log(posts);
     //console.log(posts[i])
     let id = "5eb00008770af51b0a5d634a"
     for (var i = 0; i < posts.length; i++) {
