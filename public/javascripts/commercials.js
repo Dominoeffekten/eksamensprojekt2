@@ -1,24 +1,46 @@
 'use strict';
 
 import { $ } from "./modules/nQuery.js";
-import { Ajax } from "./modules/Ajax.js";
+
 
 let commercial = [
-    'dplay.png',
-    'dplay1.png',
-    'dplay2.png',
-    'edc.png',
-    'harald.png',
-    'smarteyes.png',
-    'toyota.png',
-    'toyota1.png'
+    {
+        link: 'https://www.dplay.dk/',
+        picture: 'dplay.jpg'
+    },
+    {
+        link: 'https://www.dplay.dk/',
+        picture: 'dplay1.jpg'
+    },
+    {
+        link: 'https://www.dplay.dk/',
+        picture: 'edc.jpg'
+    },
+    {
+        link: 'https://www.harald-nyborg.dk/',
+        picture: 'harald.jpg'
+    },
+    {
+        link: 'https://www.smarteyes.dk/',
+        picture: 'smarteyes.jpg'
+    },
+    {
+        link: 'https://www.toyota.dk/',
+        picture: 'toyota.jpg'
+    },
+    {
+        link: 'https://www.toyota.dk/',
+        picture: 'toyota1.jpg'
+    },
 ];
 
+//Vælger et tilfældigt nummer i arrayet
 let changeCommercial = function () {
-    let req = Object.create(Ajax);
     let randomCommercial = Math.floor(Math.random() * commercial.length);
-    $('reklame').src = `images/commercial/${commercial[randomCommercial]}`;
-    //console.log(`Reklamen der sættes ind er: ${commercial[randomCommercial]}`)
+    $('link').href = `${commercial[randomCommercial].link}`;
+    $('reklame').src = `images/commercial/${commercial[randomCommercial].picture}`;
+    console.log(`Linket der sættes ind er: ${commercial[randomCommercial].link}`)
+    console.log(`Reklamen der sættes ind er: ${commercial[randomCommercial].picture}`)
 };
 
 window.addEventListener("load", changeCommercial);
