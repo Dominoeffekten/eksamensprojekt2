@@ -65,23 +65,25 @@ function showComment(e) {
     let posts = JSON.parse(e.target.responseText);
     console.log("kommentar");
     //console.log(posts)
+    //console.log(posts[i])
 
     for (var i = 0; i < posts.length; i++) {
-        //console.log(posts[i])
-        //console.log(posts[i].replyTo)
-        //console.log(posts[i]._id)
-        //if (posts[i].replyTo === posts[i]._id){
-        if (posts[i].replyTo != "none"){
-      
-        //console.log(posts[i]._id + " " + posts[i].replyTo)
-           
-        //if (posts[i]._id){
+        //console.log(posts[i]);
+        
+        if (posts[i].replyTo === "none"){ //Finder alle
+            console.log(posts[i]._id);
+            console.log(posts[i].replyTo);
+        }
+
+        if (posts[i].replyTo != "none"){ //finder dem som er kommentar
+            
+            console.log("re " + posts[i].replyTo)
+    /*
             console.log("picture "+posts[i].picture);
             console.log("replyto "+posts[i].replyTo);
             console.log("tag "+posts[i].tag);
             console.log("text "+posts[i].text);
             console.log("udername "+posts[i].username);
-            
             
             let commentDIV = document.createElement("div");
             commentDIV.setAttribute("class", "post");
@@ -126,6 +128,7 @@ function showComment(e) {
             row1.appendChild(postDIV);
 
             $('commentReplies').appendChild(commentDIV); 
+            */
         }
     }
 }
