@@ -9,8 +9,10 @@ block content
             p Welcome to #{user.firstName} #{user.lastName}
 
             form(id="idSubmit" action='/users/post' method='post')
-                textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
+                textarea#character_counter(type="text" name="text" placeholder="What is happening?" maxlength="167")
                 //input(type="text" name="tag" placeholder="Tags")
+                div
+                    p#character_remaining Max 167 characters allowed
                 div
                     img(id="output")
                 div.row
