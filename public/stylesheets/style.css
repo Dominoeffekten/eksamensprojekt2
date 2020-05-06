@@ -485,3 +485,9 @@ label{
   color:var(--font-color);
   font-size:20px;
 }
+.replyTo {
+  color:black;
+  padding:10px 5px;
+  margin:0;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+}

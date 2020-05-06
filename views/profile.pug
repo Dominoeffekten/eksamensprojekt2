@@ -13,7 +13,7 @@ block content
             div.follow
                 div
                     p Opslag
-                    p#postCount 0
+                    p#postCount=postCount
                 div
                     p Followers
                     p#followersCount 0
@@ -46,6 +46,9 @@ block content
                                     input(type="hidden" name="_id" value=`${post._id}`)
                                     button(type="submit") 
                                         i(class="fas fa-trash-alt")
+                    if post.replyTo != "none"
+                        div.replyTo
+                            h4(id=`replyTo${post._id}` class="replyTo")
                     div.postText
                             h3= post.text
                     if post.picture != "none"

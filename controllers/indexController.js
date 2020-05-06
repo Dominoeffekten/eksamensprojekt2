@@ -49,13 +49,13 @@ exports.findTags = async function (req,res) { //Find the tags
 exports.user = async function (req,res) { //the profil site
     let checkPost = {username: req.user.username}
     let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
-    //let user = await mon.retrieve(User, {}, {});
-    //console.log(req.user);
+    let postCount = cp.length;
     res.render('user', {
         title: "YabbaYabbaYabba",
         user: req.user,
         avatar: req.user.avatar,
-        posts: cp
+        posts: cp,
+        postCount: postCount
     });
 };
 
@@ -64,13 +64,13 @@ exports.readUser = async function (req, res) { // load profile page for clicked 
     let cu = await mon.retrieve(User, checkUser, {});
     let checkPost = {username: req.body.username}
     let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
-    console.log(cu);
-    console.log(cp);
+    let postCount = cp.length;
     res.render('profile', {
         title: "YabbaYabbaYabba",
         user: req.user,
         profile: cu,
-        posts: cp
+        posts: cp,
+        postCount: postCount
     });
 };
 

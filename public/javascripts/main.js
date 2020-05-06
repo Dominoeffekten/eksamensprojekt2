@@ -40,7 +40,20 @@ const getUser = function (ev) {
 
 const showPosts = function (e) { //Skriver datoen pæn
     let posts = JSON.parse(e.target.responseText);
+    let msg = "Answer too "
     for (var i = 0; i < posts.length; i++) {
+        if ($("profilePosts")) {
+            if (posts[i].replyTo != "none") {
+                for (var j = 0; j < posts.length; j++) {
+                    if (posts[i].replyTo === posts[j]._id) {
+                        if ($("replyTo" + posts[i]._id)) {
+                            let replyTo = $("replyTo" + posts[i]._id);
+                            replyTo.innerHTML = msg + posts[j].username + " - " + posts[j].text;
+                        }
+                    }
+                }
+            }
+        }
         if ($("posts")) {
             if (posts[i].replyTo != "none") {
                 let comment = $("post" + posts[i]._id);
