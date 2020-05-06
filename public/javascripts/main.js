@@ -169,9 +169,10 @@ const init = function () {
         getComment();
     }
     */
+    let profile = $("changeProfilePicture");
     $("changeProfile").addEventListener("click", function() {
-        $("changeProfilePicture").style.display = "flex";
-    })
+        profile.style.display = "flex";
+    });
 };
 
 window.addEventListener('load', init);

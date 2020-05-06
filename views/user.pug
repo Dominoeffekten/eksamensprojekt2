@@ -5,8 +5,8 @@ block content
     include footer.pug
     div#changeProfilePicture
         div.boxImage
-            form(action='/changeAvatar' method='post')
-                input(type="file" name="avatar" accept=".gif, .png, .jpg, .jpeg")
+            form(action='/changeAvatar' method='post' enctype="multipart/form-data")
+                input(type="file" name="picture" accept=".gif, .png, .jpg, .jpeg")
                 input(type='submit' value='Gem')
     section#content
         div#profileHead

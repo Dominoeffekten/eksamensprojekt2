@@ -91,18 +91,19 @@ exports.changeTheme = async function (req, res, next) { //change the theme
 
 exports.changeAvatar = async function (req, res, next) {
     upload(req, res, (error) => {
-        console.log(req.body);
+        console.log(req.user);
+        console.log(req.file.filename);
         let chk = {_id: req.user._id}
         let user = new User({
             darkTheme: req.user.darkTheme,
             approved: req.user.approved,
-            avatar: "images/upload/"+req.body.avatar,
+            avatar: "images/upload/"+req.file.filename,
             _id: req.user._id,
             username: req.user.username,
             firstName: req.user.firstName,
             lastName: req.user.lastName,
             email: req.user.email,
-            following: req.user.following,
+            following: req.user.following
         });
         let cs = mon.upsert(User, user, chk);
         res.redirect('user');
