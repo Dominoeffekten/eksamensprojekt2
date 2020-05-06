@@ -17,6 +17,7 @@ router.post('/userPage', ensureAuthenticated, idx.readUser);   // Reads user pag
 
 //Dark Theme
 router.get('/darkTheme', ensureAuthenticated, idx.darkTheme);
+router.post('/changeAvatar', ensureAuthenticated, idx.changeAvatar);
 router.get('/changeTheme', ensureAuthenticated, idx.changeTheme);
 
 module.exports = router;

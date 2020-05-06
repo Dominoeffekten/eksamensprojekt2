@@ -62,7 +62,7 @@ const showPosts = function (e) { //Skriver datoen pæn
                 if ($("comments" + posts[i].replyTo)) {
                     let countComment = $("comments" + posts[i].replyTo);
                     let count = Number(countComment.innerHTML);
-                    countComment.innerHTML = count + 1;
+                    countComment.innerHTML = Number(count) + 1;
                 }
                 comment.removeChild(comment.childNodes[5]);
                 comment.remove();

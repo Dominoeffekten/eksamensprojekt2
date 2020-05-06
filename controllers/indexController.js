@@ -3,7 +3,7 @@ const userHandler = require('../models/userHandle');
 
 const dbServer = "localhost";
 const dbName = "some";
-
+const upload = require('../models/upload');
 const User = require('../models/User'); 
 const Post = require('../models/Post');
 
@@ -87,6 +87,25 @@ exports.changeTheme = async function (req, res, next) { //change the theme
     } 
     let users = await userHandler.upsertUser(req, change);
     res.redirect(req.get('referer'));
+};
+
+exports.changeAvatar = async function (req, res, next) {
+    upload(req, res, (error) => {
+        let chk = {_id: req.user._id}
+        let user = new User({
+            darkTheme: req.user.darkTheme,
+            approved: req.user.approved,
+            avatar: "images/upload/"+req.file.filename,
+            _id: req.user._id,
+            username: req.user.username,
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            email: req.user.email,
+            following: req.user.following,
+        });
+        let cs = mon.upsert(User, user, chk);
+        res.redirect(req.get('referer'));
+    });
 };
 
 exports.getPost = async function (req, res, next) { // henter opslagene

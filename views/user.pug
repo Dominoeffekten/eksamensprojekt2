@@ -5,7 +5,9 @@ block content
     include footer.pug
     div#changeProfilePicture
         div.boxImage
-            img(src=avatar alt='Avatar')
+            form(action='/changeAvatar' method='post')
+                input(type="file" name="avatar" accept=".gif, .png, .jpg, .jpeg")
+                input(type='submit' value='Gem')
     section#content
         div#profileHead
             div#avatar
@@ -63,8 +65,6 @@ block content
                                         img(src=`${post.picture}` alt="test")
                             if post.replyTo === "none"
                                 div.postReplies
-                                    div(style="width:100%;")
-                                        p 0 Comments
                                     div(style="width:100%;")
                                         div.comment
                                             div.profileImage
