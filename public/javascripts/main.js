@@ -168,7 +168,7 @@ const init = function () {
     if($("yabbaPost")) {
         getComment();
     }
-    */    
+    */
 };
 
 window.addEventListener('load', init);

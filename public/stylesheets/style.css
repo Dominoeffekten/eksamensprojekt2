@@ -330,6 +330,46 @@ label{
     font-size:25px;
 }
 /* profil */
+#changeProfilePicture {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.5);
+  z-index:10;
+  display:flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.boxImage {
+  display:block;
+  width:50%;
+  height:50%;
+  margin:auto;
+  background-color:white;
+  box-shadow:1px 1px 10px black;
+  border:0.5px solid black;
+}
+.boxImage img {
+  height:100%;
+  width:inherit;
+}
+.profilePicture {
+  opacity:0;
+  background-color:rgba(0,0,0,0.5);
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  text-align:center;
+  color:white;
+  font-size:25px;
+  cursor: pointer;
+  border: none;
+}
+.profilePicture:hover {opacity: 1;}
 #profileHead {
   width: 100%;
   margin-bottom:100px;
@@ -339,6 +379,7 @@ label{
   padding: 0;
   float:left;
   margin-bottom:100px;
+  position:relative;
 }
 #avatar img {
   height: 100%;
@@ -378,10 +419,14 @@ label{
 .post {
   background-color:rgba(255,255,255,0.5);
   margin:50px 0;
+  padding:10px 0;
   border-radius:10px;
+  scroll-margin-top: 100px;
 }
 .postComments{
   background-color:var(--background-color);
+  padding:0;
+  margin:20px;
 }
 .row {
   display:flex;

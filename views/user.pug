@@ -1,72 +1,76 @@
 extends layout
 
 block content
-  include nav.pug
-  include footer.pug
-  section#content
-    div#profileHead
-        div#avatar
+    include nav.pug
+    include footer.pug
+    div#changeProfilePicture
+        div.boxImage
             img(src=avatar alt='Avatar')
-        div#profile
-            div.follow
-                h2 #{user.username}
-            div.follow
-                div
-                    p Opslag
-                    p#postCount=postCount
-                div
-                    p Followers
-                    p#followersCount 0
-                div
-                    p Following
-                    p#followingCount 0
-            div#profileInfo
-                p 
-                    strong Name 
-                    | #{user.firstName} #{user.lastName}
-                p 
-                    strong Email 
-                    | #{user.email}
-                p 
-                    strong Following 
-                    | #{user.following}
-    div.content
-        div#profilePosts
-                each post in posts
-                    div.post
-                        div.row
+    section#content
+        div#profileHead
+            div#avatar
+                img(src=avatar alt='Avatar')
+                button(class="profilePicture") Skift profilbillede
+            div#profile
+                div.follow
+                    h2 #{user.username}
+                div.follow
+                    div
+                        p Opslag
+                        p#postCount=postCount
+                    div
+                        p Followers
+                        p#followersCount 0
+                    div
+                        p Following
+                        p#followingCount 0
+                div#profileInfo
+                    p 
+                        strong Name 
+                        | #{user.firstName} #{user.lastName}
+                    p 
+                        strong Email 
+                        | #{user.email}
+                    p 
+                        strong Following 
+                        | #{user.following}
+        div.content
+            div#profilePosts
+                    each post in posts
+                        div.post
                             div.row
-                                div.profileImage
-                                    img(src=user.avatar)
+                                div.row
+                                    div.profileImage
+                                        img(src=user.avatar)
+                                    div
+                                        div
+                                            p= post.username
+                                        div
+                                            label(id=`created${post._id}`)= post.created
                                 div
-                                    div
-                                        p= post.username
-                                    div
-                                        label(id=`created${post._id}`)= post.created
-                            div
-                                if user.username === post.username
-                                    form(class="postdel" action="/users/delPost" method="post")
-                                        input(type="hidden" name="_id" value=`${post._id}`)
-                                        button(type="submit") 
-                                            i(class="fas fa-trash-alt")
-                        if post.replyTo != "none"
-                            div.replyTo
-                                h4(id=`replyTo${post._id}` class="replyTo")
-                        div.postText
-                                h3= post.text
-                        if post.picture != "none"
-                            div.postImage
-                                    img(src=`${post.picture}` alt="test")
-                        if post.replyTo === "none"
-                            div.postReplies
-                                div(style="width:100%;")
-                                    p 0 Comments
-                                div(style="width:100%;")
-                                    div.comment
-                                        div.profileImage
-                                            img(src=user.avatar)
-                                        form(action="users/postReply" method="post")
-                                                textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
-                                                //input(type="text" name="tag" placeholder="Tags")
-                                                input(type="hidden" name="replyTo" value=`${post._id}`)
-                                                input(type="submit" value="Send")
+                                    if user.username === post.username
+                                        form(class="postdel" action="/users/delPost" method="post")
+                                            input(type="hidden" name="_id" value=`${post._id}`)
+                                            button(type="submit") 
+                                                i(class="fas fa-trash-alt")
+                            if post.replyTo != "none"
+                                div.replyTo
+                                    a(href=`/dashboard#post${post.replyTo}` id=`replyTo${post._id}` class="replyTo")
+                            div.postText
+                                    h3= post.text
+                            if post.picture != "none"
+                                div.postImage
+                                        img(src=`${post.picture}` alt="test")
+                            if post.replyTo === "none"
+                                div.postReplies
+                                    div(style="width:100%;")
+                                        p 0 Comments
+                                    div(style="width:100%;")
+                                        div.comment
+                                            div.profileImage
+                                                img(src=user.avatar)
+                                            form(action="users/postReply" method="post")
+                                                    textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
+                                                    //input(type="text" name="tag" placeholder="Tags")
+                                                    input(type="hidden" name="replyTo" value=`${post._id}`)
+                                                    input(type="submit" value="Send")

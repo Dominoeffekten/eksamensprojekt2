@@ -48,7 +48,7 @@ block content
                                         i(class="fas fa-trash-alt")
                     if post.replyTo != "none"
                         div.replyTo
-                            h4(id=`replyTo${post._id}` class="replyTo")
+                            a(href=`/dashboard#post${post.replyTo}` id=`replyTo${post._id}` class="replyTo")
                     div.postText
                             h3= post.text
                     if post.picture != "none"
