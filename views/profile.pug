@@ -28,38 +28,40 @@ block content
                     strong Email 
                     | #{profile[0].email}
     div.content
-        div#posts
-                each post in posts
-                    div.post#yabbaPost
+        div#profilePosts
+            each post in posts
+                div.post#yabbaPost
+                    div.row
                         div.row
-                            div.row
-                                div.profileImage
-                                    img(src=`${profile[0].avatar}`)
-                                div
-                                    div
-                                        p= post.username
-                                    div
-                                        label(id=`created${post._id}`)= post.created
+                            div.profileImage
+                                img(src=`${profile[0].avatar}`)
                             div
-                                if user.username === post.username
-                                    form(class="postdel" action="/users/delPost" method="post")
-                                        input(type="hidden" name="_id" value=`${post._id}`)
-                                        button(type="submit") 
-                                            i(class="fas fa-trash-alt")
-                        div.postText
-                                h3= post.text
-                        if post.picture != "none"
-                            div.postImage
-                                    img(src=`${post.picture}` alt="test")
+                                div
+                                    p= post.username
+                                div
+                                    label(id=`created${post._id}`)= post.created
+                        div
+                            if user.username === post.username
+                                form(class="postdel" action="/users/delPost" method="post")
+                                    input(type="hidden" name="_id" value=`${post._id}`)
+                                    button(type="submit") 
+                                        i(class="fas fa-trash-alt")
+                    div.postText
+                            h3= post.text
+                    if post.picture != "none"
+                        div.postImage
+                                img(src=`${post.picture}` alt="test")
+                    if post.replyTo === "none"
                         div.postReplies
-                            div(style="width:100%;")
-                                p 0 Comments
+                            div.commentReplies
+                                p(id=`comments${post._id}`) 0
+                                label Comments
                             div(style="width:100%;")
                                 div.comment
                                     div.profileImage
-                                        img(src=`${profile[0].avatar}`)
-                                    form(action="postReply" method="post")
+                                        img(class=`avatar${post.username}`)
+                                    form(action="users/postReply" method="POST")
                                             textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
-                                            input(type="text" name="tag" placeholder="Tags")
+                                            //input(type="text" name="tag" placeholder="Tags")
                                             input(type="hidden" name="replyTo" value=`${post._id}`)
                                             input(type="submit" value="Send")

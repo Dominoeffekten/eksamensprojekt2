@@ -135,7 +135,7 @@ exports.postPost = async function (req, res, next) {
 exports.postDelete = async function (req, res, next) { //Delete post
     let check = {_id: req.body._id}
     let cs = mon.remove(Post, check);
-    res.redirect('/dashboard');
+    res.redirect(req.get('referer'));
 };
 exports.postReply = async function (req, res, next) {
     console.log(req.body);
@@ -156,7 +156,7 @@ exports.postReply = async function (req, res, next) {
     });
     let cs = await mon.create(Post, post);
     console.log(cs);
-    res.redirect('/dashboard');
+    res.redirect(req.get('referer'));
 };
 
 exports.login = function (req, res) { // vis login siden

@@ -39,8 +39,6 @@ let changeCommercial = function () {
     let randomCommercial = Math.floor(Math.random() * commercial.length);
     $('link').href = `${commercial[randomCommercial].link}`;
     $('reklame').src = `images/commercial/${commercial[randomCommercial].picture}`;
-    console.log(`Linket der sættes ind er: ${commercial[randomCommercial].link}`)
-    console.log(`Reklamen der sættes ind er: ${commercial[randomCommercial].picture}`)
 };
 
 window.addEventListener("load", changeCommercial);

@@ -24,11 +24,13 @@ const getPost = function (ev) {
     req.init();
     req.getFile("/getPost", showPosts);
 };
+/*
 const getComment = function (ev) { //Viser kommentar
     let req = Object.create(Ajax);
     req.init();
     req.getFile("/getPost", showComment);
 };
+*/
 
 const getUser = function (ev) {
     let req = Object.create(Ajax);
@@ -38,10 +40,22 @@ const getUser = function (ev) {
 
 const showPosts = function (e) { //Skriver datoen pæn
     let posts = JSON.parse(e.target.responseText);
-    //console.log(posts);
-   
     for (var i = 0; i < posts.length; i++) {
-        if($("created" + posts[i]._id) === null){
+        if ($("posts")) {
+            if (posts[i].replyTo != "none") {
+                let comment = $("post" + posts[i]._id);
+                let post = $("post" + posts[i].replyTo);
+                if ($("comments" + posts[i].replyTo)) {
+                    let countComment = $("comments" + posts[i].replyTo);
+                    let count = Number(countComment.innerHTML);
+                    countComment.innerHTML = count + 1;
+                }
+                comment.removeChild(comment.childNodes[5]);
+                comment.remove();
+                post.appendChild(comment);
+            }
+        }
+        if($("created" + posts[i]._id) === null) {
         } else {
             let link = $("created" + posts[i]._id);
             link.innerHTML = posts[i].created.split("T")[0];
@@ -60,7 +74,7 @@ const showUsers = function (e) { //viser avatar billedet
     	}
     }
 }
-
+/*
 function showComment(e) {
     let posts = JSON.parse(e.target.responseText);
     console.log("kommentar");
@@ -126,6 +140,7 @@ function showComment(e) {
         }
     }
 };
+*/
 
 
 const init = function () {
@@ -135,11 +150,11 @@ const init = function () {
     if(url === "http://localhost:3000/dashboard") {
         images();
     }
+    /*
     if($("yabbaPost")) {
         getComment();
     }
-
-    
+    */    
 };
 
 window.addEventListener('load', init);

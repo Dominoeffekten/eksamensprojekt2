@@ -272,7 +272,6 @@ input[type="reset"] {
   border-radius: 50px;
   margin: 10px;
   margin-right: 50px;
-  border: 1px solid var(--white);
 }
 /* annonce */
 #commercial {
@@ -422,11 +421,19 @@ input[type="reset"] {
 }
 .postReplies p {
   margin:0;
-  text-decoration: underline;
   cursor: pointer;
 }
 .comment {
   width:100%;
+}
+.commentReplies {
+  display:flex;
+  justify-content: space-between;
+  width:90px;
+  color:white;
+  text-decoration: none;
+  border-bottom:1px solid white;
+  margin-bottom:10px;
 }
 .comment .profileImage img {
   width:30px;

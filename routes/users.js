@@ -44,12 +44,12 @@ router.post('/login',
 , auth.postLogin);
 
 // posting
-router.post('/postImage', auth.postImage);  // post med billede
-router.post('/post', auth.postPost);    // post uden billede
-router.post('/delPost', auth.postDelete);   // delete post
-router.post('/postReply', auth.postReply);   // lav kommentar
+router.post('/postImage', ensureAuthenticated, auth.postImage);  // post med billede
+router.post('/post', ensureAuthenticated, auth.postPost);    // post uden billede
+router.post('/delPost', ensureAuthenticated, auth.postDelete);   // delete post
+router.post('/postReply', ensureAuthenticated, auth.postReply);   // lav kommentar
 
-router.get('/logout', auth.logout);
+router.get('/logout', ensureAuthenticated, auth.logout);
 
 
 module.exports = router;

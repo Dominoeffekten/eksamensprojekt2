@@ -15,8 +15,6 @@ router.get('/user', ensureAuthenticated, idx.user); //viser profilen
 router.get('/getUsers', ensureAuthenticated, idx.getUsers); //henter users
 router.post('/userPage', ensureAuthenticated, idx.readUser);   // Reads user page
 
-router.get('/getComments', idx.getComments);   // find kommetar
-
 //Dark Theme
 router.get('/darkTheme', ensureAuthenticated, idx.darkTheme);
 router.get('/changeTheme', ensureAuthenticated, idx.changeTheme);

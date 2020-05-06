@@ -12,11 +12,11 @@ block content
 					input(type='submit' value='Search')
 				div#tags
 					each post in posts
-						div.post#yabbaPost
+						div(class="post" id=`post${post._id}`)
 							div.row
 								div.row
 									div.profileImage
-										img(class=`avatar${post.username}` src="images/placeholder.jpeg")
+										img(class=`avatar${post.username}`)
 									div
 										if post.username != user.username
 											div.usernameLink
@@ -39,17 +39,3 @@ block content
 							if post.picture != "none"
 								div.postImage
 										img(src=`${post.picture}` alt="test")
-							div.postReplies
-								div(style="width:100%;")
-									//p#tags #{post.tag}
-									// br
-									p 0 Comments
-								div(style="width:100%;")
-									div.comment
-										div.profileImage
-											img(class=`avatar${post.username}` src="images/placeholder.jpeg")
-										form(action="postReply" method="post")
-												textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
-												//input(type="text" name="tag" placeholder="Tags")
-												input(type="hidden" name="replyTo" value=`${post._id}`)
-												input(type="submit" value="Send")

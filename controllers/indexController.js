@@ -90,17 +90,11 @@ exports.changeTheme = async function (req, res, next) { //change the theme
 };
 
 exports.getPost = async function (req, res, next) { // henter opslagene
-    let post = await mon.retrieve(Post, {}, {});
+    let post = await mon.retrieve(Post, {}, {sort: {created: -1}});
     res.json(post);
 };
 exports.getUsers = async function (req, res, next) { // henter opslagene
     let user = await mon.retrieve(User, {}, {});
     //console.log(user);
     res.json(user);
-};
-
-exports.getComments = async function (req, res, next) { // henter opslagene
-    let comment = await mon.retrieve(Post, {replyTo: { $exists: true} }, {});
-    //console.log(user);
-    res.json(comment);
 };
