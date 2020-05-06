@@ -169,6 +169,9 @@ const init = function () {
         getComment();
     }
     */
+    $("changeProfile").addEventListener("click", function() {
+        $("changeProfilePicture").style.display = "flex";
+    })
 };
 
 window.addEventListener('load', init);
