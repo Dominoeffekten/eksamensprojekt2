@@ -407,7 +407,7 @@ label{
 }
 #content .post form button {
   padding:2px;
-  color:var(--white);
+  color:var(--grey);
   font-size:18px;
   border:none;
   background-color:transparent;
