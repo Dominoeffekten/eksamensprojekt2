@@ -45,6 +45,7 @@ const showPosts = function (e) { //Skriver datoen pæn
             if (posts[i].replyTo != "none") {
                 let comment = $("post" + posts[i]._id);
                 let post = $("post" + posts[i].replyTo);
+                comment.setAttribute("class", "post postComments");
                 if ($("comments" + posts[i].replyTo)) {
                     let countComment = $("comments" + posts[i].replyTo);
                     let count = Number(countComment.innerHTML);
