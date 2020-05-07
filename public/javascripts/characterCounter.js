@@ -3,17 +3,20 @@
 import { $ } from "./modules/nQuery.js";
 
 let countCharacters = function (e) {
-    let textEntered = $('character_counter').value;
-    let counter = (167 - (textEntered.length));
-    let countRemaining = $('character_remaining');
-    countRemaining.textContent = counter;
+  let textEntered = $('character_counter').value;
+  let counter = (167 - (textEntered.length));
+  let countRemaining = $('character_remaining');
+  countRemaining.textContent = `${counter} tegn`;
 }
+
 /*
-if (counter >= 160) {
-  countRemaining.style.display = "none";
+if (countRemaining.textContent >= 160) {
+  $('character_remaining').style.display = "none";
 } else {
-  countRemaining.style.display = "block";
-}*/
+  $('character_remaining').style.display = "block";
+}
+*/
+
 let el = $('character_counter')
 el.addEventListener('keyup', countCharacters, false);
 

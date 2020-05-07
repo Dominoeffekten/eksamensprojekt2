@@ -275,6 +275,20 @@ label{
   margin: 10px;
   margin-right: 50px;
 }
+/* antal tegn tilbage */
+#character_remaining {
+  margin-top: 0px;
+  padding-top: 0px;
+  margin-bottom: 10px;
+  padding-bottom: 0px;
+  font-size: 10px;
+  text-align: right;
+}
+/* ændret for at mindske gabet mellem #character_remaining og foto ikon*/
+#changeoutput {
+  display: none;
+}
+
 /* annonce */
 #commercial {
   position: fixed;
