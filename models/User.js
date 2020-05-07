@@ -31,7 +31,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  avatar: { 
+  avatar: {
     type: String,
     default: "images/avatar.jpeg"
   },
@@ -42,28 +42,32 @@ const UserSchema = new mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
+  },
+  secretToken: {
+    type: String,
+    required: true,
   }
 });
 
-UserSchema.methods.follow = function(id) {
-  if(this.following.indexOf(id) === -1) {
+UserSchema.methods.follow = function (id) {
+  if (this.following.indexOf(id) === -1) {
     this.following.push(id);
   }
   return this.save();
 };
 
-UserSchema.methods.unfollow = function(id) {
+UserSchema.methods.unfollow = function (id) {
   this.following.remove(id);
   return this.save();
 };
 
-UserSchema.methods.isFollowing = function(id) {
-  return this.following.some(function(followId) {
+UserSchema.methods.isFollowing = function (id) {
+  return this.following.some(function (followId) {
     return followId.toString() === id.toString();
   });
 };
 
-UserSchema.methods.toProfileJSONFor = function(user) {
+UserSchema.methods.toProfileJSONFor = function (user) {
   return {
     username: this.username,
     firstName: this.firstName,

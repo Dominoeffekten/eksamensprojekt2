@@ -4,7 +4,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const dbServer = "localhost";
 const dbName = "some";
-
+const randomstring = require('randomstring'); // register new user
 const User = require('../models/User');
 const Post = require('../models/Post');
 
@@ -14,16 +14,16 @@ const upload = require('../models/upload');//Billede vedhæftning
 
 
 exports.register = function (req, res) {
-  /*
-    const errors = validationResult(request);
-
-    if(!errors.isEmpty()) {       // validator check
-      request.session.feedback = {
-        errors: errors.array(),
+    /*
+      const errors = validationResult(request);
+  
+      if(!errors.isEmpty()) {       // validator check
+        request.session.feedback = {
+          errors: errors.array(),
+        };
+        return response.redirect('/users/login')
       };
-      return response.redirect('/users/login')
-    };
-    */
+      */
     res.render('register', {
         title: "YabbaYabbaYabba"
     });
@@ -56,7 +56,7 @@ exports.postRegister = function (req, res) {
             password2
         });
     } else {
-        User.findOne({ username: username, email: email }).then( function (user) {
+        User.findOne({ username: username, email: email }).then(function (user) {
             if (user) {
                 errors.push({ msg: 'Username or email already exists' });
                 res.render('register', {
@@ -69,12 +69,17 @@ exports.postRegister = function (req, res) {
                     password2
                 });
             } else {
+                //Generate secret token
+                const secretToken = randomstring.generate();
+
+
                 const newUser = new User({
                     username,
                     firstName,
                     lastName,
                     email,
-                    password
+                    password,
+                    secretToken
                 });
 
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
@@ -92,9 +97,12 @@ exports.postRegister = function (req, res) {
                         .catch(err => console.log(err));
                 });
             }
+
         });
     }
+
 };
+
 
 exports.postImage = async function (req, res, next) {
     console.log(req.body);
@@ -103,7 +111,7 @@ exports.postImage = async function (req, res, next) {
         console.log(req.file);
         let post = new Post({
             username: req.user.username,
-            picture: "images/upload/"+req.file.filename,
+            picture: "images/upload/" + req.file.filename,
             tag: req.body.tag,
             text: req.body.text
         });
@@ -133,7 +141,7 @@ exports.postPost = async function (req, res, next) {
     res.redirect('/dashboard');
 };
 exports.postDelete = async function (req, res, next) { //Delete post
-    let check = {_id: req.body._id}
+    let check = { _id: req.body._id }
     let cs = mon.remove(Post, check);
     res.redirect(req.get('referer'));
 };
