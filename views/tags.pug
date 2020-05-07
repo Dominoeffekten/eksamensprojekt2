@@ -34,6 +34,9 @@ block content
 											input(type="hidden" name="_id" value=`${post._id}`)
 											button(type="submit") 
 												i(class="fas fa-trash-alt")
+							if post.replyTo != "none"
+								div.replyTo
+									a(href=`/dashboard#post${post.replyTo}` id=`replyTo${post._id}` class="replyTo")
 							div.postText#postText
 									h3= post.text
 							if post.picture != "none"

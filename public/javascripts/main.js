@@ -42,7 +42,7 @@ const showPosts = function (e) { //Skriver datoen pæn
     let posts = JSON.parse(e.target.responseText);
     let msg = "Answer too "
     for (var i = 0; i < posts.length; i++) {
-        if ($("profilePosts")) {
+        if ($("profilePosts") || $("tags")) {
             if (posts[i].replyTo != "none") {
                 for (var j = 0; j < posts.length; j++) {
                     if (posts[i].replyTo === posts[j]._id) {
