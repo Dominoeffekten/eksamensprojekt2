@@ -119,3 +119,32 @@ exports.getUsers = async function (req, res, next) { // henter opslagene
     //console.log(user);
     res.json(user);
 };
+
+
+exports.newFollow = async function (req, res, next) { //ny follow
+    var profileId = req.body.followID;
+    console.log(req.body);
+    console.log(req.user);
+
+    User.findById( profileId ).then(function(user) {
+        if (!user) { return res.sendStatus(401); } //hvis fejl
+
+        return user.follow(profileId).then(function() {
+            console.log(req.user)
+            return res.json({_id: req.body.toProfileJSONFor(user)}); //kommer ikke herind
+        });
+    }).catch(next);
+
+};
+/*
+exports.newFollow = async function (req, res, next) { // delete folloers
+    var profileId = req.profile._id;
+
+    User.findById(req.payload.id).then(function(user) {
+        if (!user) { return res.sendStatus(401); }
+
+        return user.unfollow(profileId).then(function() {
+            return res.json({profiles: req.profile.toProfileJSONFor(user)});
+        });
+    }).catch(next);
+};*/
