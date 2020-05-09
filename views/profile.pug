@@ -5,7 +5,7 @@ block content
   include footer.pug
   section#content
     div#profileHead
-        form(action="/userPage/follow" method="POST" style="float:right")
+        form#followForm(action="/userPage/follow" method="POST" style="float:right")
             input(type="hidden" name="followID" value=profile[0]._id)
             input(type="submit" value="Follow")
         div#avatar
@@ -31,7 +31,6 @@ block content
                     strong Email 
                     | #{profile[0].email}
                 p
-                                    button(class="btn btn-action btn-sm btn-default" onclick="follow()") Follow
     div.content
         div#profilePosts
             each post in posts
