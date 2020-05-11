@@ -19,6 +19,25 @@ function images(){
     });
 }
 
+function modal(){
+
+    var modal = $("myModal");
+    var btn = $("showFolllowing");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() { //open the modal
+        modal.style.display = "block";
+    }
+    span.onclick = function() { // close the modal
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) { //close it outside the modal 
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
 const getPost = function (ev) {
     let req = Object.create(Ajax);
     req.init();
@@ -86,19 +105,22 @@ const init = function () {
     getPost();
     getUser();
 
-    if(url === "http://localhost:3000/dashboard") {
+    if(url === "http://localhost:3000/dashboard") { //hvis dashboard
         images();
     }
-   if(url === "http://localhost:3000/user") {
+   if(url === "http://localhost:3000/user") { 
         let profile = $("changeProfilePicture");
         $("changeProfile").addEventListener("click", function() {
             profile.style.display = "flex";
         });
     }
-    if($("profileHead")) {
+    if($("profileHead")) { //hvis andres profilside
         if($("unfollowInput")){
             $("followInput").remove();
         }
+    }
+    if($("myModal")) { //hvis profilside
+        modal();
     }
 };
 

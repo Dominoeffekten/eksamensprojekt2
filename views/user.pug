@@ -24,7 +24,16 @@ block content
                         p Followers
                         p#followersCount 0
                     div
-                        p Following
+                        button#showFolllowing Following              
+                            div#myModal.modal
+                                div.modal-content
+                                    span.close &times;
+                                    each users in user.following
+                                        div.usernameLink
+                                            form#userProfile(action="/userPage" method="post")
+                                                input(type="hidden" name="username" value=users)
+                                                input(type="submit" value=users)
+                                                br
                         p#followingCount=numberOfFollowing
                 div#profileInfo
                     p 
@@ -33,15 +42,6 @@ block content
                     p 
                         strong Email 
                         | #{user.email}
-                    p 
-                        strong Following 
-                        br
-                        each users in user.following
-                            div.usernameLink
-                                form#userProfile(action="/userPage" method="post")
-                                    input(type="hidden" name="username" value=users)
-                                    input(type="submit" value=users)
-                                br
         div.content
             div#profilePosts
                     each post in posts
