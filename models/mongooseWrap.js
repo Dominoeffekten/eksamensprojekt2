@@ -18,7 +18,6 @@ exports.retrieve = async function(obj, query, sort) {
         return stuff;
     }
 }
-
 //Indsætter
 exports.upsert = async function(obj, query, chk) {
     let stuff = null;
@@ -47,7 +46,7 @@ exports.remove = async function(obj, name) {
         return stuff;
     }
 }
-
+//laver en
 exports.create = async function(obj, query) {
     let rc = null;
     try { 

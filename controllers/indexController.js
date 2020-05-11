@@ -48,14 +48,24 @@ exports.findTags = async function (req,res) { //Find the tags
 
 exports.user = async function (req,res) { //the profil site
     let checkPost = {username: req.user.username}
+    //undersøger ens posts
     let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
     let postCount = cp.length;
+    //tjekker ens følgere
+    let following = await mon.retrieve(User, checkPost, { sort: {created: -1}})
+    console.log(following[0].following)
+    let number = following[0].following;
+    let numberOfFollowing = number.length;
+    console.log(numberOfFollowing)
+
+
     res.render('user', {
         title: "YabbaYabbaYabba",
         user: req.user,
         avatar: req.user.avatar,
         posts: cp,
-        postCount: postCount
+        postCount: postCount,
+        numberOfFollowing: numberOfFollowing
     });
 };
 
