@@ -35,7 +35,13 @@ block content
                         | #{user.email}
                     p 
                         strong Following 
-                        | #{user.following}
+                        br
+                        each users in user.following
+                            div.usernameLink
+                                form#userProfile(action="/userPage" method="post")
+                                    input(type="hidden" name="username" value=users)
+                                    input(type="submit" value=users)
+                                br
         div.content
             div#profilePosts
                     each post in posts

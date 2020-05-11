@@ -22,6 +22,5 @@ router.get('/changeTheme', ensureAuthenticated, idx.changeTheme);
 
 //follow
 router.post('/userPage/follow', ensureAuthenticated, idx.newFollow);
-//router.post('/userPage/unfollow', ensureAuthenticated, idx.delFollow);
 
 module.exports = router;
