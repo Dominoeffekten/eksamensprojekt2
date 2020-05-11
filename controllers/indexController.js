@@ -19,14 +19,10 @@ exports.getDashboard = async function (req,res) { //the post site
     console.log(following);
 
     if(following.length > 0 ){
-
-        for(var i = 0; i < following.length; i++){
-            console.log(following[i]);
-        }
-        let posts = await mon.retrieve(Post, {username: {$in: following[0]}}, { sort: {created: -1}});
+        let posts = await mon.retrieve(Post, {username: {$in: following}}, { sort: {created: -1}});
 
         //console.log(posts);
-        return res.render('dashboard', {
+        res.render('dashboard', {
             title: "YabbaYabbaYabba", 
             user: req.user,
             posts: posts
