@@ -35,10 +35,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "images/avatar.jpeg"
   },
-  following: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }],
+  following: [],
   created: {
     type: Date,
     default: Date.now
@@ -48,7 +45,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   }
 });
-
+/*
 UserSchema.methods.follow = function (id) {
   if (this.following.indexOf(id) === -1) {
     this.following.push(id);
@@ -76,7 +73,7 @@ UserSchema.methods.toProfileJSONFor = function (user) {
     following: user ? user.isFollowing(this._id) : false
   };
 };
-
+*/
 const User = mongoose.model('User', UserSchema, 'user');
 
 module.exports = User;

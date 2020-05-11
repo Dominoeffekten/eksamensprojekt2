@@ -124,16 +124,23 @@ exports.getUsers = async function (req, res, next) { // henter opslagene
 exports.newFollow = async function (req, res, next) { //ny follow
     var profileId = req.body.followID;
     console.log(req.body);
-    console.log(req.user);
 
-    User.findById( profileId ).then(function(user) {
-        if (!user) { return res.sendStatus(401); } //hvis fejl
-
-        return user.follow(profileId).then(function() {
-            console.log(req.user)
-            return res.json({_id: req.body.toProfileJSONFor(user)}); //kommer ikke herind
+        let chk = {_id: req.user._id}
+        let user = new User({
+            darkTheme: req.user.darkTheme,
+            approved: req.user.approved,
+            avatar: req.user.avatar,
+            _id: req.user._id,
+            username: req.user.username,
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            email: req.user.email,
+            following: profileId
         });
-    }).catch(next);
+        let cs = await mon.upsert(User, user, chk);
+
+        console.log(req.user);
+        res.redirect("/user");
 
 };
 /*
