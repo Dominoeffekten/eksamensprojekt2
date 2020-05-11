@@ -359,9 +359,9 @@ label{
   height:100%;
   background-color:rgba(0,0,0,0.5);
   z-index:10;
-  display:none;
   justify-content: space-around;
   flex-direction: column;
+  display: none;
 }
 .boxImage {
   display:block;
@@ -391,6 +391,9 @@ label{
   border: none;
 }
 .profilePicture:hover {opacity: 1;}
+
+
+
 #profileHead {
   width: 100%;
   margin-bottom:100px;
@@ -560,7 +563,7 @@ label{
 }
 
 /* The Modal (background) */
-.modal {
+#myModal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -573,7 +576,6 @@ label{
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-
 /* Modal Content */
 #showFolllowing{
   border: none;
@@ -598,14 +600,16 @@ label{
     border: none;
   }
   /* The Close Button */
-  .close {
+  .close, .closeProfile {
     color: var(--grey);
     float: right;
     font-size: 28px;
     font-weight: bold;
   }
   .close:hover,
-  .close:focus {
+  .close:focus,
+  .closeProfile:hover,
+  .closeProfile:focus {
     color: var(--black);
     text-decoration: none;
     cursor: pointer;

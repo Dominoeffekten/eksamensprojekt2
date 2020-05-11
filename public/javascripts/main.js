@@ -110,9 +110,14 @@ const init = function () {
     }
    if(url === "http://localhost:3000/user") { 
         let profile = $("changeProfilePicture");
+        var span = document.getElementsByClassName("closeProfile")[0];
+
         $("changeProfile").addEventListener("click", function() {
             profile.style.display = "flex";
         });
+        span.onclick = function() { // close the modal
+            profile.style.display = "none";
+        }
     }
     if($("profileHead")) { //hvis andres profilside
         if($("unfollowInput")){
