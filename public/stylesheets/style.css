@@ -68,13 +68,20 @@ section {
 }
 h1,
 h2,
-h3,
+h3, 
 h4 {
   color: var(--heading);
 }
+
 h1 {
   text-align: center;
 }
+
+.warning {
+  color: red;
+  font-size: 32px;
+}
+
 p {
   color: var(--font-color);
 }
