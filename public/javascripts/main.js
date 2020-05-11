@@ -119,12 +119,12 @@ const init = function () {
             profile.style.display = "none";
         }
     }
-    if($("profileHead")) { //hvis andres profilside
+    if($("profileHead")) { //andres profilside
         if($("unfollowInput")){
             $("followInput").remove();
         }
     }
-    if($("myModal")) { //hvis profilside
+    if($("myModal")) { //profilside
         modal();
     }
 };
