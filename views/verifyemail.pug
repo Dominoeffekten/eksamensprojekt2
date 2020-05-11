@@ -9,13 +9,11 @@ block content
             a(href="/users/register") Register
             a(href="/users/login") Login
     section#logReg
-        h1 Welcome to YabbaYabbaYabba
-        p The place where you can write to people
+       
         p Verify Your email
         
-        form(action='users/verifyemail' method='post')
+        form(action='/users/verifyemail' method='post')
             label(for='secretToken') Secret Token
-            input(type='text' name='secretToken' placeholder="secretToken") 
-        p No account?&nbsp;
-            a(href='/users/register') Verify
+            input(type='text' name='secretToken' placeholder="secretToken here") 
+            input(type='submit' value='Verify email')
     include footer.pug
