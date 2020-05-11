@@ -331,10 +331,6 @@ label{
   clear:both;
 }
 #content form {
-  padding-bottom: 25px;
-  margin-bottom: 25px;
-}
-#idSubmit{
   border-bottom: 1px solid black;
   padding-bottom: 25px;
   margin-bottom: 25px;
@@ -470,7 +466,7 @@ label{
   padding:2px 10px;
   margin:0;
 }
-#content .post form :not(#userProfile) {
+#content .post form {
   margin:0;
   padding:10px;
   border:none;
@@ -530,7 +526,7 @@ label{
   font-size:12px;
   border-radius:2px;
 }
-.comment form input  {
+.comment form input {
   height:20px;
   margin:0;
   font-size:12px;

@@ -15,13 +15,14 @@ exports.frontpage = function (req, res) { //frontpage
 
 exports.getDashboard = async function (req,res) { //the post site
     let following = req.user.following;
+    console.log(req.user.username)
     console.log(following.length)
     console.log(following);
 
+    following.push(req.user.username);
+    
     if(following.length > 0 ){
         let posts = await mon.retrieve(Post, {username: {$in: following}}, { sort: {created: -1}});
-
-        //console.log(posts);
         res.render('dashboard', {
             title: "YabbaYabbaYabba", 
             user: req.user,
