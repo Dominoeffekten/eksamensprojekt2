@@ -7,7 +7,10 @@ block content
     div#profileHead
         form#followForm(action="/userPage/follow" method="POST" style="float:right")
             input(type="hidden" name="followID" value=profile[0]._id)
-            input(type="submit" value="Follow")
+            input#followInput(type="submit" value="Follow")
+            each users in user.following
+                if users == profile[0]._id
+                    input#unfollowInput(type="submit" value="Unfollow")
         div#avatar
             img(src=profile[0].avatar alt='Avatar')
         div#profile
@@ -15,7 +18,7 @@ block content
                 h2=profile[0].username
             div.follow
                 div
-                    p Opslag
+                    p Posts
                     p#postCount=postCount
                 div
                     p Followers
@@ -66,6 +69,5 @@ block content
                                         img(class=`avatar${post.username}`)
                                     form(action="users/postReply" method="POST")
                                             textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
-                                            //input(type="text" name="tag" placeholder="Tags")
                                             input(type="hidden" name="replyTo" value=`${post._id}`)
                                             input(type="submit" value="Send")

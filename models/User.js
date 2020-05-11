@@ -45,35 +45,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   }
 });
-/*
-UserSchema.methods.follow = function (id) {
-  if (this.following.indexOf(id) === -1) {
-    this.following.push(id);
-  }
-  return this.save();
-};
 
-UserSchema.methods.unfollow = function (id) {
-  this.following.remove(id);
-  return this.save();
-};
-
-UserSchema.methods.isFollowing = function (id) {
-  return this.following.some(function (followId) {
-    return followId.toString() === id.toString();
-  });
-};
-
-UserSchema.methods.toProfileJSONFor = function (user) {
-  return {
-    username: this.username,
-    firstName: this.firstName,
-    lastName: this.lastName,
-    avatar: this.avatar,
-    following: user ? user.isFollowing(this._id) : false
-  };
-};
-*/
 const User = mongoose.model('User', UserSchema, 'user');
 
 module.exports = User;

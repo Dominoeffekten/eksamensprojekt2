@@ -24,13 +24,6 @@ const getPost = function (ev) {
     req.init();
     req.getFile("/getPost", showPosts);
 };
-/*
-const getComment = function (ev) { //Viser kommentar
-    let req = Object.create(Ajax);
-    req.init();
-    req.getFile("/getPost", showComment);
-};
-*/
 
 const getUser = function (ev) {
     let req = Object.create(Ajax);
@@ -88,74 +81,6 @@ const showUsers = function (e) { //viser avatar billedet
     	}
     }
 }
-/*
-function showComment(e) {
-    let posts = JSON.parse(e.target.responseText);
-    console.log("kommentar");
-    
-    //console.log(posts);
-    //console.log(posts[i])
-    let id = "5eb00008770af51b0a5d634a"
-    for (var i = 0; i < posts.length; i++) {
-        if (posts[i].replyTo != "none"){ //finder dem som er kommentar
-        //if (posts[i].replyTo === id){
-            console.log(posts[i].replyTo)
-           
-            console.log("re " + posts[i].replyTo)
-            console.log("picture "+posts[i].picture);
-            console.log("replyto "+posts[i].replyTo);
-            console.log("tag "+posts[i].tag);
-            console.log("text "+posts[i].text);
-            console.log("udername "+posts[i].username);
-            
-            let commentDIV = document.createElement("div");
-            commentDIV.setAttribute("class", "post");
-
-            let row1 = document.createElement("row");
-            let row2 = document.createElement("row");
-            commentDIV.appendChild(row1);
-            row1.appendChild(row2);
-
-            let profilDIV = document.createElement("div");
-            profilDIV.setAttribute("class", "profileImage");
-            row2.appendChild(profilDIV);
-
-            let img = document.createElement("img");
-            img.setAttribute("class", "avatar"+posts[i].username);
-            img.setAttribute("scr", "images/avatar.jpeg");
-            profilDIV.appendChild(img);
-
-            let userDIV = document.createElement("div");
-            userDIV.setAttribute("class", "usernameLink");
-            let a =  document.createElement("a");
-            a.setAttribute("href", "/user");
-            let link = document.createTextNode(posts[i].username);
-            a.appendChild(link);
-            userDIV.appendChild(a);
-            profilDIV.appendChild(userDIV);
-
-            let datoDIV = document.createElement("div");
-            let label =  document.createElement("label");
-            label.setAttribute("id", "created"+posts[i]._id);
-            datoDIV.appendChild(label);
-            profilDIV.appendChild(datoDIV);
-
-            let postDIV = document.createElement("div");
-            postDIV.setAttribute("class", "postText");
-            postDIV.setAttribute("id", "postText");
-
-            let h3 = document.createElement("h3");
-            let text = document.createTextNode(posts[i].text);
-            h3.appendChild(text);
-            postDIV.appendChild(h3);
-            row1.appendChild(postDIV);
-
-            $('commentReplies').appendChild(commentDIV); 
-        }
-    }
-};
-*/
-
 
 const init = function () {
     getPost();
@@ -164,15 +89,17 @@ const init = function () {
     if(url === "http://localhost:3000/dashboard") {
         images();
     }
-    /*
-    if($("yabbaPost")) {
-        getComment();
+   if(url === "http://localhost:3000/user") {
+        let profile = $("changeProfilePicture");
+        $("changeProfile").addEventListener("click", function() {
+            profile.style.display = "flex";
+        });
     }
-    */
-    let profile = $("changeProfilePicture");
-    $("changeProfile").addEventListener("click", function() {
-        profile.style.display = "flex";
-    });
+    if($("profileHead")) {
+        if($("unfollowInput")){
+            $("followInput").remove();
+        }
+    }
 };
 
 window.addEventListener('load', init);

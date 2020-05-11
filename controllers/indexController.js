@@ -65,6 +65,7 @@ exports.readUser = async function (req, res) { // load profile page for clicked 
     let checkPost = {username: req.body.username}
     let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
     let postCount = cp.length;
+    console.log(req.user)
     res.render('profile', {
         title: "YabbaYabbaYabba",
         user: req.user,
@@ -125,17 +126,34 @@ exports.newFollow = async function (req, res, next) { //ny follow
 
     let iAmFollowing = req.body.followID;
     let following = req.user.following
-    //console.log(following);
+    console.log(following);
     //console.log(req.body.followID);
 
     for(var i = 0; i < following.length; i++){
         if(iAmFollowing === following[i]){ //Følger man personen
             console.log("Du følger brugeren");
+            following.splice(i, 1);
+            console.log(following);
+
+            let chk = {_id: req.user._id}
+            let user = new User({
+                darkTheme: req.user.darkTheme,
+                approved: req.user.approved,
+                avatar: req.user.avatar,
+                _id: req.user._id,
+                username: req.user.username,
+                firstName: req.user.firstName,
+                lastName: req.user.lastName,
+                email: req.user.email,
+                following: following
+            });
+            let cs = await mon.upsert(User, user, chk);
+            
             return res.redirect("/user");
         }
     }
 
-    following.push(iAmFollowing);
+        following.push(iAmFollowing);
 
         let chk = {_id: req.user._id}
         let user = new User({
@@ -155,15 +173,4 @@ exports.newFollow = async function (req, res, next) { //ny follow
         res.redirect("/user");
 
 };
-/*
-exports.newFollow = async function (req, res, next) { // delete folloers
-    var profileId = req.profile._id;
 
-    User.findById(req.payload.id).then(function(user) {
-        if (!user) { return res.sendStatus(401); }
-
-        return user.unfollow(profileId).then(function() {
-            return res.json({profiles: req.profile.toProfileJSONFor(user)});
-        });
-    }).catch(next);
-};*/
