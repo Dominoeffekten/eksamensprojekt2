@@ -14,12 +14,32 @@ exports.frontpage = function (req, res) { //frontpage
 };
 
 exports.getDashboard = async function (req,res) { //the post site
-    let posts = await mon.retrieve(Post, {}, { sort: {created: -1}});
-    res.render('dashboard', {
-        title: "YabbaYabbaYabba", 
-        user: req.user,
-        posts: posts
-    });
+    let following = req.user.following;
+    console.log(following.length)
+    console.log(following);
+
+    if(following.length > 0 ){
+
+        for(var i = 0; i < following.length; i++){
+            console.log(following[i]);
+        }
+        let posts = await mon.retrieve(Post, {username: {$in: following[0]}}, { sort: {created: -1}});
+
+        //console.log(posts);
+        return res.render('dashboard', {
+            title: "YabbaYabbaYabba", 
+            user: req.user,
+            posts: posts
+        }); 
+    } else {
+        let posts = await mon.retrieve(Post, {}, { sort: {created: -1}});
+        //console.log(posts);
+        res.render('dashboard', {
+            title: "YabbaYabbaYabba", 
+            user: req.user,
+            posts: posts
+        });
+    }
 };
 
 exports.getTags = async function (req,res) { //the tags site
@@ -51,13 +71,11 @@ exports.user = async function (req,res) { //the profil site
     //undersøger ens posts
     let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
     let postCount = cp.length;
+
     //tjekker ens følgere
     let following = await mon.retrieve(User, checkPost, { sort: {created: -1}})
-    console.log(following[0].following)
     let number = following[0].following;
     let numberOfFollowing = number.length;
-    console.log(numberOfFollowing)
-
 
     res.render('user', {
         title: "YabbaYabbaYabba",
@@ -70,10 +88,11 @@ exports.user = async function (req,res) { //the profil site
 };
 
 exports.readUser = async function (req, res) { // load profile page for clicked user
-    let checkUser = {username: req.body.username}
-    let cu = await mon.retrieve(User, checkUser, {});
-    let checkPost = {username: req.body.username}
-    let cp = await mon.retrieve(Post, checkPost, { sort: {created: -1}})
+    let userData = {username: req.body.username}
+
+    let cu = await mon.retrieve(User, userData, {});
+    let cp = await mon.retrieve(Post, userData, { sort: {created: -1}})
+    
     let postCount = cp.length;
     console.log(req.user)
     res.render('profile', {
