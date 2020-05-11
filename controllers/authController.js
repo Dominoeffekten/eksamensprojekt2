@@ -192,10 +192,33 @@ exports.postLogin = async function (req, res, next) { //login
     }
 };
 
-exports.verifyemail = function (req, res) { // vis login siden
+exports.verifyemail = function (req, res) { // vis verifyemail siden
     res.render('verifyemail', {
         title: "YabbaYabbaYabba"
     });
+};
+
+exports.postVerifyemail = async function (req, res, next) { //login
+
+    //check if user is verified
+    const secretToken = req.body.secretToken;
+    console.log(secretToken);
+    //find account that matches secret token
+    const user = await User.findOne({ 'secretToken': secretToken });
+    if (!User) {
+        req.flash('error', 'No user found.');
+        res.redirect('/verifyemail');
+        return;
+    }
+
+    user.approved = true;
+    user.secretToken = '';
+    await user.save();
+    console.log(user.approved);
+    req.flash('succes', 'Thank you! Now You can login.');
+    res.redirect('/login');
+
+
 };
 
 exports.logout = function (req, res) { //log ud

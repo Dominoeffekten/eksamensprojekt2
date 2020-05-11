@@ -40,7 +40,7 @@ router.post('/login', [
 ], auth.postLogin);
 
 router.get('/verifyemail', forwardAuthenticated, auth.verifyemail);
-
+router.post('/verifyemail', auth.postVerifyemail);
 
 
 
