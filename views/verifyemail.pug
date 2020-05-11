@@ -11,13 +11,11 @@ block content
     section#logReg
         h1 Welcome to YabbaYabbaYabba
         p The place where you can write to people
-        h3.warning= warning 
-        form(action='/users/login' method='post')
-            label Email
-            input(type='text' name='email' required)
-            label Password
-            input(type='password' name='password' required)
-            input(type='submit' value='Login')
+        p Verify Your email
+        
+        form(action='users/verifyemail' method='post')
+            label(for='secretToken') Secret Token
+            input(type='text' name='secretToken' placeholder="secretToken") 
         p No account?&nbsp;
-            a(href='/users/register') Register
+            a(href='/users/register') Verify
     include footer.pug

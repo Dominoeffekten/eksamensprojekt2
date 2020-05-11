@@ -172,13 +172,32 @@ exports.login = function (req, res) { // vis login siden
         title: "YabbaYabbaYabba"
     });
 };
-exports.postLogin = function (req, res, next) { //login
-    passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req, res, next);
+exports.postLogin = async function (req, res, next) { //login
+    //check if user is validated
+    let data = await mon.retrieve(User, { email: req.body.email }, {});
+    let approved = data[0].approved;
+    console.log(approved);
+
+    if (!approved) { // not approved    
+
+        res.render('login', {
+            warning: 'Please verify Your email'
+        });
+    } else {
+        passport.authenticate('local', {
+            successRedirect: '/dashboard',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+    }
 };
+
+exports.verifyemail = function (req, res) { // vis login siden
+    res.render('verifyemail', {
+        title: "YabbaYabbaYabba"
+    });
+};
+
 exports.logout = function (req, res) { //log ud
     req.logout();
     req.flash('success_msg', 'You are logged out');

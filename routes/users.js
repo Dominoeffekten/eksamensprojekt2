@@ -10,17 +10,17 @@ router.get('/register', forwardAuthenticated, auth.register);
 router.post('/register', [
   check('username')   // express-validator
     .trim()
-    .isLength({min: 3})
+    .isLength({ min: 3 })
     .escape()
     .withMessage('You need a username'),
   check('firstName')
     .trim()
-    .isLength({min: 2})
+    .isLength({ min: 2 })
     .escape()
     .withMessage('What is yout first name?'),
   check('lastName')
     .trim()
-    .isLength({min: 2})
+    .isLength({ min: 2 })
     .escape()
     .withMessage('What is your last name?'),
   check('email')
@@ -28,16 +28,21 @@ router.post('/register', [
     .isEmail()
     .normalizeEmail()
     .withMessage('you need a email')
-  ], auth.postRegister);
+], auth.postRegister);
 
 router.get('/login', forwardAuthenticated, auth.login);
 router.post('/login', [
-    check('email')
-      .trim()
-      .isEmail()
-      .normalizeEmail()
-      .withMessage('You need a email')
-  ] , auth.postLogin);
+  check('email')
+    .trim()
+    .isEmail()
+    .normalizeEmail()
+    .withMessage('You need a email')
+], auth.postLogin);
+
+router.get('/verifyemail', forwardAuthenticated, auth.verifyemail);
+
+
+
 
 // posting
 router.post('/postImage', ensureAuthenticated, auth.postImage);  // post med billede
