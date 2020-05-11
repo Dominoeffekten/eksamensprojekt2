@@ -122,8 +122,20 @@ exports.getUsers = async function (req, res, next) { // henter opslagene
 
 
 exports.newFollow = async function (req, res, next) { //ny follow
-    var profileId = req.body.followID;
-    console.log(req.body);
+
+    let iAmFollowing = req.body.followID;
+    let following = req.user.following
+    //console.log(following);
+    //console.log(req.body.followID);
+
+    for(var i = 0; i < following.length; i++){
+        if(iAmFollowing === following[i]){ //Følger man personen
+            console.log("Du følger brugeren");
+            return res.redirect("/user");
+        }
+    }
+
+    following.push(iAmFollowing);
 
         let chk = {_id: req.user._id}
         let user = new User({
@@ -135,7 +147,7 @@ exports.newFollow = async function (req, res, next) { //ny follow
             firstName: req.user.firstName,
             lastName: req.user.lastName,
             email: req.user.email,
-            following: profileId
+            following: following
         });
         let cs = await mon.upsert(User, user, chk);
 
