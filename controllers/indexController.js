@@ -163,7 +163,7 @@ exports.newFollow = async function (req, res, next) { //ny follow
             let chk = {_id: req.user._id}
             let user = new User({
                 darkTheme: req.user.darkTheme,
-                approved: req.user.approved,
+                approved: true,
                 avatar: req.user.avatar,
                 _id: req.user._id,
                 username: req.user.username,
