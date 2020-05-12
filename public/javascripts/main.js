@@ -96,38 +96,40 @@ const showPosts = function (e) { //Skriver datoen pæn
         let user = JSON.parse(e.target.responseText);
         console.log(user);
         console.log(posts);
-        if ($("posts")) {
-            if (user.following.length > 0) {
-                let allPosts = document.getElementsByClassName("post");
-                for (var i = 0; i < allPosts.length; i++) {
-                    allPosts[i].style.display = "none";
+        if (user.following.length > 0) {
+            let allPosts = document.getElementsByClassName("post");
+            for (var i = 0; i < allPosts.length; i++) {
+                allPosts[i].style.display = "none";
+            }
+            for (var i = 0; i < user.following.length; i++) {
+                console.log(user.following[i]);
+                let followedPosts = document.getElementsByClassName("post" + user.following[i]);    // finds followed posts for looped user
+                for (var j = 0; j < followedPosts.length; j++) {    // loops though posts from that user
+                    followedPosts[j].style.display = "block";   // display all those posts
                 }
-                for (var i = 0; i < user.following.length; i++) {
-                    console.log(user.following[i]);
-                    let followedPosts = document.getElementsByClassName("post" + user.following[i]);
-                    for (var j = 0; j < followedPosts.length; j++) {
-                        followedPosts[j].style.display = "block";
-                    }
-                    let ownPosts = document.getElementsByClassName("post" + user.username);
-                    for (var q = 0; q < ownPosts.length; q++) {
-                        ownPosts[q].style.display = "block";
-                    }
-                    for (var k = 0; k < posts.length; k++) {
-                        if (posts[k].replyTo != "none") {       // if comment
-                            console.log(posts[k].replyTo);
-                            let originalPost = $("post" + posts[k].replyTo)
-                            if (originalPost.style.display === "block") {       // if post 
-                                $("post" + posts[k]._id).style.display = "block";
-                            }
+                let ownPosts = document.getElementsByClassName("post" + user.username); // finds ur own posts
+                for (var q = 0; q < ownPosts.length; q++) { // loops through own posts
+                    ownPosts[q].style.display = "block";    // displays own posts
+                }
+                for (var k = 0; k < posts.length; k++) {
+                    if (posts[k].replyTo != "none") {       // if comment
+                        if (posts[k].username === user.following[i]) {
+                            $("post" + posts[k].replyTo).style.display = "block";
+                        }
+                        let originalPost = $("post" + posts[k].replyTo)
+                        if (originalPost.style.display === "block") {       // if post comment replies to is shown 
+                            $("post" + posts[k]._id).style.display = "block";   // show all comments for that post
                         }
                     }
                 }
-            } else {
-                console.log("show all posts");
             }
+        } else {
+            console.log("show all posts");
         }
     }
-    getUsers();
+    if ($("posts")) {
+        getUsers();
+    }
 }
 
 const showUsers = function (e) { //viser avatar billedet
