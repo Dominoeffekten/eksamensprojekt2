@@ -70,7 +70,7 @@ const showPosts = function (e) { //Skriver datoen pæn
             if (posts[i].replyTo != "none") {
                 let comment = $("post" + posts[i]._id);
                 let post = $("post" + posts[i].replyTo);
-                comment.setAttribute("class", "post postComments");
+                comment.setAttribute("class", "post postComments " + "post" + posts[i].username);
                 if ($("comments" + posts[i].replyTo)) {
                     let countComment = $("comments" + posts[i].replyTo);
                     let count = Number(countComment.innerHTML);
@@ -111,6 +111,15 @@ const showPosts = function (e) { //Skriver datoen pæn
                     let ownPosts = document.getElementsByClassName("post" + user.username);
                     for (var q = 0; q < ownPosts.length; q++) {
                         ownPosts[q].style.display = "block";
+                    }
+                    for (var k = 0; k < posts.length; k++) {
+                        if (posts[k].replyTo != "none") {       // if comment
+                            console.log(posts[k].replyTo);
+                            let originalPost = $("post" + posts[k].replyTo)
+                            if (originalPost.style.display === "block") {       // if post 
+                                $("post" + posts[k]._id).style.display = "block";
+                            }
+                        }
                     }
                 }
             } else {
