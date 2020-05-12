@@ -82,25 +82,25 @@ exports.postRegister = async function (req, res) {
                     password,
                     secretToken
                 });
-
-                // Compose email
-                const html = `Hello!
-                <br>
-                Thanks for registering!
-                <br>
-                You can soon begin to Yabba.
-                <br><br>
-                Verify Your email by typing this token:
-                <br>
-                <br>${secretToken}</br>
-                On the following page:
-                <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a>
-                <br><br>
-                Have a Yabba day! `;
-
-                // Send the email
-                mailer.sendEmail('admin@yabba.com', result.value.email, 'Please verify your email', html)
-
+                /*
+                                // Compose email
+                                const html = `Hello!
+                                <br>
+                                Thanks for registering!
+                                <br>
+                                You can soon begin to Yabba.
+                                <br><br>
+                                Verify Your email by typing this token:
+                                <br>
+                                <br>${secretToken}</br>
+                                On the following page:
+                                <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a>
+                                <br><br>
+                                Have a Yabba day! `;
+                
+                                // Send the email
+                                mailer.sendEmail('admin@yabba.com', result.value.email, 'Please verify your email', html)
+                                */
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
                     if (err) throw err;
                     newUser.password = hash;
@@ -197,7 +197,7 @@ exports.postLogin = async function (req, res, next) { //login
     let approved = data[0].approved;
     console.log(approved);
 
-    if (approved) { // not approved    
+    if (!approved) { // not approved    
 
         res.render('login', {
             warning: 'Please verify Your email'
@@ -217,24 +217,34 @@ exports.verifyemail = function (req, res) { // vis login siden
     });
 };
 
-exports.postVerifyemail = async function (req, res, next) { //login
+exports.postVerifyemail = async function (req, res, next) { //Find secretToken to verify mail
 
-    const secretToken = req.body.secretToken.trim();
+    let secretToken = req.body.secretToken.trim();
 
     //find the user that matches secret token
-    await User.findOne({ 'secretToken': secretToken });
-    if (!user) {
-        res.redirect('users/verify');
-        return
+    let users = await mon.retrieve(User, { 'secretToken': secretToken }, {});
+    console.log(users[0]);
+    if (!users[0]) {
+        res.redirect('verify');
     }
 
-    user.active = true;
-    user.secretToken = "";
-    console.log(user.active);
-    await user.save();
+    let chk = { _id: users[0]._id }
+    let user = new User({
+        darkTheme: users[0].darkTheme,
+        approved: true,
+        avatar: users[0].avatar,
+        _id: users[0]._id,
+        username: users[0].username,
+        firstName: users[0].firstName,
+        lastName: users[0].lastName,
+        email: users[0].email,
+        following: users[0].following,
+        secretToken: ''
+    });
+    let cs = await mon.upsert(User, user, chk);
+    console.log(users[0]);
+    res.redirect('login');
 
-    res.redirect('users/login');
-    return
 };
 
 
