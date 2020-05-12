@@ -113,8 +113,8 @@ const showPosts = function (e) { //Skriver datoen pæn
                 }
                 for (var k = 0; k < posts.length; k++) {
                     if (posts[k].replyTo != "none") {       // if comment
-                        if (posts[k].username === user.following[i]) {
-                            $("post" + posts[k].replyTo).style.display = "block";
+                        if (posts[k].username === user.following[i]) {  // if user of comment is the same user who we follow
+                            $("post" + posts[k].replyTo).style.display = "block";   // show original post
                         }
                         let originalPost = $("post" + posts[k].replyTo)
                         if (originalPost.style.display === "block") {       // if post comment replies to is shown 
