@@ -24,7 +24,7 @@ block content
             div#posts
                 each post in posts
                     // if post.replyTo === 'none' 
-                    div(class="post" id=`post${post._id}`)
+                    div(class=`post post${post.username}` id=`post${post._id}`)
                         div.row
                             div.row
                                 div.profileImage

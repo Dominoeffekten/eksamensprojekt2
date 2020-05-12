@@ -87,6 +87,38 @@ const showPosts = function (e) { //Skriver datoen pæn
             link.innerHTML = posts[i].created.split("T")[0];
         }
     }
+    const getUsers = function (ev) {
+        let req = Object.create(Ajax);
+        req.init();
+        req.getFile("/getUser", showUser);
+    };
+    const showUser = function (e) {
+        let user = JSON.parse(e.target.responseText);
+        console.log(user);
+        console.log(posts);
+        if ($("posts")) {
+            if (user.following.length > 0) {
+                let allPosts = document.getElementsByClassName("post");
+                for (var i = 0; i < allPosts.length; i++) {
+                    allPosts[i].style.display = "none";
+                }
+                for (var i = 0; i < user.following.length; i++) {
+                    console.log(user.following[i]);
+                    let followedPosts = document.getElementsByClassName("post" + user.following[i]);
+                    for (var j = 0; j < followedPosts.length; j++) {
+                        followedPosts[j].style.display = "block";
+                    }
+                    let ownPosts = document.getElementsByClassName("post" + user.username);
+                    for (var q = 0; q < ownPosts.length; q++) {
+                        ownPosts[q].style.display = "block";
+                    }
+                }
+            } else {
+                console.log("show all posts");
+            }
+        }
+    }
+    getUsers();
 }
 
 const showUsers = function (e) { //viser avatar billedet

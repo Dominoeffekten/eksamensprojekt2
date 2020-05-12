@@ -14,28 +14,20 @@ exports.frontpage = function (req, res) { //frontpage
 };
 
 exports.getDashboard = async function (req,res) { //the post site
+    /*
     let following = req.user.following;
-    console.log(req.user.username)
-    console.log(following.length)
-    console.log(following);
-
     if(following.length > 0 ){
         following.push(req.user.username);
         let posts = await mon.retrieve(Post, {username: {$in: following}}, { sort: {created: -1}});
-        res.render('dashboard', {
-            title: "YabbaYabbaYabba", 
-            user: req.user,
-            posts: posts
-        }); 
     } else {
-        let posts = await mon.retrieve(Post, {}, { sort: {created: -1}});
-        //console.log(posts);
-        res.render('dashboard', {
-            title: "YabbaYabbaYabba", 
-            user: req.user,
-            posts: posts
-        });
     }
+    */
+    let posts = await mon.retrieve(Post, {}, { sort: {created: -1}});
+    res.render('dashboard', {
+        title: "YabbaYabbaYabba", 
+        user: req.user,
+        posts: posts
+    });
 };
 
 exports.getTags = async function (req,res) { //the tags site
@@ -144,6 +136,9 @@ exports.getUsers = async function (req, res, next) { // henter opslagene
     let user = await mon.retrieve(User, {}, {});
     //console.log(user);
     res.json(user);
+};
+exports.getUser = async function (req, res, next) { // henter opslagene
+    res.json(req.user);
 };
 
 

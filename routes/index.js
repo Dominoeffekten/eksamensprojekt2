@@ -13,6 +13,7 @@ router.post('/findTags', ensureAuthenticated, idx.findTags); //henter tags
 
 router.get('/user', ensureAuthenticated, idx.user); //viser ens egne profilen
 router.get('/getUsers', ensureAuthenticated, idx.getUsers); //henter users
+router.get('/getUser', ensureAuthenticated, idx.getUser); //henter users
 router.post('/userPage', ensureAuthenticated, idx.readUser);   // Reads another user page
 
 //Dark Theme
