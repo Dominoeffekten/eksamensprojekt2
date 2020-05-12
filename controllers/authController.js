@@ -197,7 +197,7 @@ exports.postLogin = async function (req, res, next) { //login
     let approved = data[0].approved;
     console.log(approved);
 
-    if (approved) { // not approved    
+    if (!approved) { // not approved    
 
         res.render('login', {
             warning: 'Please verify Your email'
