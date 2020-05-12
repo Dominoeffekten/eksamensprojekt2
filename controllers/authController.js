@@ -7,6 +7,7 @@ const dbName = "some";
 const randomstring = require('randomstring'); // register new user
 const User = require('../models/User');
 const Post = require('../models/Post');
+//const mailer = require('..models/mailer');
 
 const saltRounds = 10;
 const upload = require('../models/upload');//Billede vedhæftning
@@ -29,7 +30,7 @@ exports.register = function (req, res) {
     });
 };
 
-exports.postRegister = function (req, res) {
+exports.postRegister = async function (req, res) {
     const { username, firstName, lastName, email, password, password2 } = req.body;
     let errors = [];
 
@@ -81,6 +82,24 @@ exports.postRegister = function (req, res) {
                     password,
                     secretToken
                 });
+
+                // Compose email
+                const html = `Hello!
+                <br>
+                Thanks for registering!
+                <br>
+                You can soon begin to Yabba.
+                <br><br>
+                Verify Your email by typing this token:
+                <br>
+                <br>${secretToken}</br>
+                On the following page:
+                <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a>
+                <br><br>
+                Have a Yabba day! `;
+
+                // Send the email
+                mailer.sendEmail('admin@yabba.com', result.value.email, 'Please verify your email', html)
 
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
                     if (err) throw err;
@@ -197,6 +216,27 @@ exports.verifyemail = function (req, res) { // vis login siden
         title: "YabbaYabbaYabba"
     });
 };
+
+exports.postVerifyemail = async function (req, res, next) { //login
+
+    const secretToken = req.body.secretToken.trim();
+
+    //find the user that matches secret token
+    await User.findOne({ 'secretToken': secretToken });
+    if (!user) {
+        res.redirect('users/verify');
+        return
+    }
+
+    user.active = true;
+    user.secretToken = "";
+    console.log(user.active);
+    await user.save();
+
+    res.redirect('users/login');
+    return
+};
+
 
 exports.logout = function (req, res) { //log ud
     req.logout();

@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const config = require('../models/mailer');
+const config = require('../config/mailer');
 
 const transport = nodemailer.createTransport({
     service: 'Mailgun',
