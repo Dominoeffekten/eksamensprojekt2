@@ -2,14 +2,16 @@ const nodemailer = require('nodemailer');
 const config = require('../config/mailer');
 
 let testAccount = nodemailer.createTestAccount();
-        
+
  // create reusable transporter object using the default SMTP transport
  var transporter = nodemailer.createTransport({
-    host: "smtp.exampel.com",
-    service: 'exampel',
+    host: "smtp.ethereal.email",
+    port: 465,
+    secure: true,
+    type: 'OAuth2',
     auth: {
-      user: 'username',
-      pass: 'password'
+      user: testAccount.user,
+      pass: testAccount.pass
     }
   });
         
