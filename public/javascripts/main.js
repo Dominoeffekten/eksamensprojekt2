@@ -153,7 +153,8 @@ const showPosts = function (e) { //Skriver datoen pæn
 
 const showUsers = function (e) { //viser avatar billedet
     let users = JSON.parse(e.target.responseText);
-    //console.log(users);
+
+    console.log(users);
     let posts = document.getElementsByClassName("profileImage");
     for (var i = 0; i < users.length; i++) {
     	let className = document.getElementsByClassName("avatar" + users[i].username);
@@ -169,7 +170,9 @@ const showUsers = function (e) { //viser avatar billedet
     const showUser = function (e) {
         let user = JSON.parse(e.target.responseText);
         let ownUser = user.username;
+        let otherUser = $("otherUser").innerText;
         let count = 0;
+        console.log(ownUser);
         if ($("followersCount")) {
             for (var i = 0; i < users.length; i++) {
                 for (var j = 0; j < users[i].following.length; j++) {
@@ -177,6 +180,39 @@ const showUsers = function (e) { //viser avatar billedet
                         console.log(users[i].username + "følger dig");
                         count = count + 1;
                         $("followersCount").innerHTML = count;
+
+                        let div = document.createElement("div");
+                        div.setAttribute("class", "usernameLink");
+                        let followerForm = document.createElement("form");
+                        followerForm.setAttribute("id", "followerForm");
+                        followerForm.setAttribute("action", "/userPage");
+                        followerForm.setAttribute("method", "post");
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "hidden");
+                        input.setAttribute("name", "username");
+                        input.setAttribute("value", users[i].username);
+                        followerForm.appendChild(input);
+                        let input1 = document.createElement("input");
+                        input1.setAttribute("type", "submit");
+                        input1.setAttribute("value", users[i].username);
+                        followerForm.appendChild(input1);
+    
+                        div.appendChild(followerForm);
+                        $("modalContent").appendChild(div);
+                    }
+
+                }
+            }
+        }
+        if ($("followersCounts")) {
+            console.log(users);
+            console.log(otherUser);
+            for (var i = 0; i < users.length; i++) {
+                for (var j = 0; j < users[i].following.length; j++) {
+                    if (otherUser === users[i].following[j]) {
+                        console.log(users[i].username + "følger dig");
+                        count = count + 1;
+                        $("followersCounts").innerHTML = count;
 
                         let div = document.createElement("div");
                         div.setAttribute("class", "usernameLink");
