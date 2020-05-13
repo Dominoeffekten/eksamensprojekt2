@@ -7,7 +7,7 @@ const dbName = "some";
 const randomstring = require('randomstring'); // register new user
 const User = require('../models/User');
 const Post = require('../models/Post');
-//const mailer = require('..models/mailer');
+const mailer = require('../models/mailer');
 
 const saltRounds = 10;
 const upload = require('../models/upload');//Billede vedhæftning
@@ -15,16 +15,6 @@ const upload = require('../models/upload');//Billede vedhæftning
 
 
 exports.register = function (req, res) {
-    /*
-      const errors = validationResult(request);
-  
-      if(!errors.isEmpty()) {       // validator check
-        request.session.feedback = {
-          errors: errors.array(),
-        };
-        return response.redirect('/users/login')
-      };
-      */
     res.render('register', {
         title: "YabbaYabbaYabba"
     });
@@ -99,7 +89,7 @@ exports.postRegister = async function (req, res) {
                                 Have a Yabba day! `;
                 
                                 // Send the email
-                                mailer.sendEmail('admin@yabba.com', result.value.email, 'Please verify your email', html)
+                                mailer.sendEmail('admin@yabba.com', email, 'Please verify your email', html)
                                 */
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
                     if (err) throw err;
@@ -115,6 +105,9 @@ exports.postRegister = async function (req, res) {
                         })
                         .catch(err => console.log(err));
                 });
+                console.log(email);
+                console.log(secretToken);
+                let mail = mailer.sendEmail(email, secretToken);
             }
 
         });
