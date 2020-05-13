@@ -1,24 +1,20 @@
 const nodemailer = require('nodemailer');
-const config = require('../config/mailer');
+//const config = require('../config/mailer');
 
-let testAccount = nodemailer.createTestAccount();
-
- // create reusable transporter object using the default SMTP transport
- var transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 465,
-    secure: true,
-    type: 'OAuth2',
-    auth: {
-      user: testAccount.user,
-      pass: testAccount.pass
-    }
-  });
-        
-        
-// send mail with defined transport object
 exports.sendEmail = async function(toEmail, secretToken) {
-    var message = await transporter.sendMail({
+    console.log(toEmail);
+    console.log(secretToken);
+
+    // 1) Create a transporter
+    var transport = nodemailer.createTransport({
+        service: process.env.EMAIL_SERVICE,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASSWORD,
+        },
+    });
+    // 2) Define the email options
+    var message = {
         from: ' "YabbaYabbaYabba 👻" <admin@yabba.com>',
         to: toEmail,
         subject: "Hello ✔",
@@ -37,7 +33,9 @@ exports.sendEmail = async function(toEmail, secretToken) {
         On the following page:
         <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
         Have a Yabba day! `
-    });
+    };
+    // 3) Actually send the email
+    await transport.sendMail(message);
 };
         
         

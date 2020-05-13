@@ -105,8 +105,6 @@ exports.postRegister = async function (req, res) {
                         })
                         .catch(err => console.log(err));
                 });
-                console.log(email);
-                console.log(secretToken);
                 let mail = mailer.sendEmail(email, secretToken);
             }
 
