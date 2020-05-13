@@ -8,6 +8,7 @@ exports.sendEmail = async function(toEmail, secretToken) {
     // 1) Create a transporter
     var transport = nodemailer.createTransport({
         service: process.env.EMAIL_SERVICE,
+        secure: false,
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASSWORD,
@@ -35,7 +36,13 @@ exports.sendEmail = async function(toEmail, secretToken) {
         Have a Yabba day! `
     };
     // 3) Actually send the email
-    await transport.sendMail(message);
+    transport.sendMail(message, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
 };
         
         
