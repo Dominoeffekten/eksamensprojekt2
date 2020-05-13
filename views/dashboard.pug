@@ -9,7 +9,7 @@ block content
             p Welcome to #{user.firstName} #{user.lastName}
 
             form(id="idSubmit" action='/users/post' method='post')
-                textarea#character_counter(type="text" name="text" placeholder="What is happening?" maxlength="167")
+                textarea#character_counter(type="text" name="text" placeholder="What is happening?" maxlength="167" required)
                 //input(type="text" name="tag" placeholder="Tags")
                 div
                     p#character_remaining
@@ -60,7 +60,7 @@ block content
                                     div.profileImage
                                         img(class=`avatar${post.username}`)
                                     form(action="users/postReply" method="POST")
-                                            textarea(type="text" name="text" placeholder="What is happening?" maxlength="167")
+                                            textarea(type="text" name="text" placeholder="What is happening?" maxlength="167" required)
                                             //input(type="text" name="tag" placeholder="Tags")
                                             input(type="hidden" name="replyTo" value=`${post._id}`)
                                             input(type="submit" value="Send")
