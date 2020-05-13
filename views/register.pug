@@ -25,6 +25,15 @@ block content
             label Repeat password
             input(type='password' name='password2' required)
             input(type='submit' value='Registrate')
+            if errors != undefined && errors.length != 0
+                each error in errors
+                    div(role='alert' id='a1') #{error.msg}
+            if success_msg != ''
+                div(role='alert' id='a2') #{success_msg}
+            if error_msg != ''
+                div(role='alert' id='a3') #{error_msg}
+            if error != ''
+                div(role='alert' id='a4') #{error}
         p Have an account?&nbsp;
             a(href='/users/login') Login
     include footer.pug

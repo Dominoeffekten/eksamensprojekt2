@@ -7,12 +7,12 @@ exports.sendEmail = async function(toEmail, secretToken) {
 
     // 1) Create a transporter
     var transport = nodemailer.createTransport({
-        service: process.env.EMAIL_SERVICE,
-        secure: false,
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASSWORD,
+        host: "localhost",
+        port: 3000,
+        tls: {
+            rejectUnauthorized: false
         },
+        
     });
     // 2) Define the email options
     var message = {
@@ -22,7 +22,7 @@ exports.sendEmail = async function(toEmail, secretToken) {
         text: `Hello! Thanks for registering!<br>
         You can soon begin to Yabba.<br>
         Verify Your email by typing this token: <br>
-        <br> ${secretToken}<br>
+        <br> `+ secretToken +`<br>
         On the following page:
         <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
         Have a Yabba day!`,
@@ -30,7 +30,7 @@ exports.sendEmail = async function(toEmail, secretToken) {
         Thanks for registering! <br>
         You can soon begin to Yabba. <br><br>
         Verify Your email by typing this token: <br>
-        <br>${secretToken}</br>
+        <br>$`+ secretToken +`</br>
         On the following page:
         <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
         Have a Yabba day! `
@@ -38,9 +38,11 @@ exports.sendEmail = async function(toEmail, secretToken) {
     // 3) Actually send the email
     transport.sendMail(message, function(error, info){
         if (error) {
+            console.log(transport.options);
             console.log(error);
         } else {
             console.log('Email sent');
+            console.log(transport.options);
         }
     });
 };
