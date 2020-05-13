@@ -142,6 +142,28 @@ const showUsers = function (e) { //viser avatar billedet
     		className[j].setAttribute("src", users[i].avatar)
     	}
     }
+    const getUsers = function (ev) {
+        let req = Object.create(Ajax);
+        req.init();
+        req.getFile("/getUser", showUser);
+    };
+    const showUser = function (e) {
+        let user = JSON.parse(e.target.responseText);
+        let ownUser = user.username;
+        let count = 0;
+        if ($("followersCount")) {
+            for (var i = 0; i < users.length; i++) {
+                for (var j = 0; j < users[i].following.length; j++) {
+                    if (ownUser === users[i].following[j]) {
+                        console.log(users[i].username + "følger dig");
+                        count = count + 1;
+                        $("followersCount").innerHTML = count;
+                    }
+                }
+            }
+        }
+    }
+    getUsers();
 }
 
 const init = function () {
