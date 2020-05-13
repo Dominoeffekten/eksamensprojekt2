@@ -38,6 +38,25 @@ function modal(){
     }
 }
 
+function modalf(){
+
+    var modal = $("myModalF");
+    var btn = $("showFollowers");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() { //open the modal
+        modal.style.display = "block";
+    }
+    span.onclick = function() { // close the modal
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) { //close it outside the modal 
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
 const getPost = function (ev) {
     let req = Object.create(Ajax);
     req.init();
@@ -158,7 +177,27 @@ const showUsers = function (e) { //viser avatar billedet
                         console.log(users[i].username + "følger dig");
                         count = count + 1;
                         $("followersCount").innerHTML = count;
+
+                        let div = document.createElement("div");
+                        div.setAttribute("class", "usernameLink");
+                        let followerForm = document.createElement("form");
+                        followerForm.setAttribute("id", "followerForm");
+                        followerForm.setAttribute("action", "/userPage");
+                        followerForm.setAttribute("method", "post");
+                        let input = document.createElement("input");
+                        input.setAttribute("type", "hidden");
+                        input.setAttribute("name", "username");
+                        input.setAttribute("value", users[i].username);
+                        followerForm.appendChild(input);
+                        let input1 = document.createElement("input");
+                        input1.setAttribute("type", "submit");
+                        input1.setAttribute("value", users[i].username);
+                        followerForm.appendChild(input1);
+    
+                        div.appendChild(followerForm);
+                        $("modalContent").appendChild(div);
                     }
+
                 }
             }
         }
@@ -191,6 +230,9 @@ const init = function () {
     }
     if($("myModal")) { //profilside
         modal();
+    }
+    if($("myModalF")) {
+        modalf();
     }
 };
 

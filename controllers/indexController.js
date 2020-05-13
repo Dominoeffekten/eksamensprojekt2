@@ -83,12 +83,19 @@ exports.readUser = async function (req, res) { // load profile page for clicked 
     
     let postCount = cp.length;
     console.log(req.user)
+    console.log(userData)
+    console.log(cu)
+
+    let number = cu[0].following;
+    let numberOfFollowing = number.length;
+    
     res.render('profile', {
         title: "YabbaYabbaYabba",
         user: req.user,
         profile: cu,
         posts: cp,
-        postCount: postCount
+        postCount: postCount,
+        numberOfFollowing: numberOfFollowing
     });
 };
 

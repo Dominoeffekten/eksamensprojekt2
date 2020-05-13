@@ -576,8 +576,32 @@ label{
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+
+#myModalF {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 /* Modal Content */
 #showFolllowing{
+  border: none;
+  background-color: transparent;
+  color: var(--font-color);
+  font-size: 15px;
+  margin-top: 13px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--font-color);
+}
+
+#showFolllowers{
   border: none;
   background-color: transparent;
   color: var(--font-color);
