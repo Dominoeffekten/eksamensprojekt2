@@ -18,6 +18,15 @@ block content
             label Password
             input(type='password' name='password' required)
             input(type='submit' value='Login')
+            if errors != undefined && errors.length != 0
+                each error in errors
+                    div(role='alert' id='a1') #{error.msg}
+            if success_msg != ''
+                div(role='alert' id='a2') #{success_msg}
+            if error_msg != ''
+                div(role='alert' id='a3') #{error_msg}
+            if error != ''
+                div(role='alert' id='a4') #{error}
         p No account?&nbsp;
             a(href='/users/register') Register
     include footer.pug
