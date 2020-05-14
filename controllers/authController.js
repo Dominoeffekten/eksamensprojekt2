@@ -7,7 +7,7 @@ const dbName = "some";
 const randomstring = require('randomstring'); // register new user
 const User = require('../models/User');
 const Post = require('../models/Post');
-const mailer = require('../models/mailer');
+const sendEmail = require('../models/mailer');
 
 const saltRounds = 10;
 const upload = require('../models/upload');//Billede vedhæftning
@@ -86,7 +86,7 @@ exports.postRegister = async function (req, res) {
                         })
                         .catch(err => console.log(err));
                 });
-                mailer.sendEmail(email, secretToken);
+                sendEmail(email, secretToken);
             }
 
         });

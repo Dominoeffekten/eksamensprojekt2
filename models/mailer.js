@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 
 //const config = require('../config/mailer');
 
-let sendEmail = async function (toEmail, secretToken) {
+let sendEmail = async function (email, secretToken) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -14,7 +14,7 @@ let sendEmail = async function (toEmail, secretToken) {
 
     let mailOptions = {
         from: 'yabba3times@gmail.com',
-        to: toEmail,
+        to: email,
         subject: "Hello ✔",
         text: `Hello! Thanks for registering!<br>
         You can soon begin to Yabba.<br>
@@ -27,13 +27,13 @@ let sendEmail = async function (toEmail, secretToken) {
         Thanks for registering! <br>
         You can soon begin to Yabba. <br><br>
         Verify Your email by typing this token: <br>
-        <br>$`+ secretToken + `</br>
+        <br>`+ secretToken + `</br>
         On the following page:
         <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
         Have a Yabba day! `,
     };
 
-    transporter.sendEmail(mailOptions, function (err, data) {
+    transporter.sendMail(mailOptions, function (err, data) {
         if (err) {
             console.log('Error had happend', err);
         } else {
