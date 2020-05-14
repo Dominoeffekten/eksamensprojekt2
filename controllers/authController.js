@@ -71,8 +71,6 @@ exports.postRegister = async function (req, res) {
                     password,
                     secretToken
                 });
-                let mail = mailer.sendEmail(email, secretToken);
-
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
                     if (err) throw err;
                     newUser.password = hash;
