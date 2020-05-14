@@ -11,13 +11,13 @@ let sendEmail = async function (email, secretToken) {
             pass: process.env.PASSWORD
         },
         tls: {
-            rejectUnauthorized: false,  
-            secureProtocol: "TLSv1_method" 
+            rejectUnauthorized: false,
+            secureProtocol: "TLSv1_method"
         }
     });
 
     let mailOptions = {
-        from: process.env.EMAIL,
+        from: 'Team Yabba',
         to: email,
         subject: "Hello ✔",
         text: `Hello! Thanks for registering!<br>
