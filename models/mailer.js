@@ -10,12 +10,6 @@ let sendEmail = async function (email, secretToken) {
             user: process.env.EMAIL,
             pass: process.env.PASSWORD
         },
-        tls: {
-            rejectUnauthorized: false, // den havde I vist
-            ignoreTLS: false,  // kan måske undværes, ikke testet
-            requireTLS: true, // kan måske også undværes, ikke testet
-            secureProtocol: "TLSv1_method"  // denne linje gjorde forskellen, fundet ved søgning på fejlmeddelsen
-        }
     });
 
     let mailOptions = {
