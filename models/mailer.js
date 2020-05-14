@@ -6,15 +6,18 @@ const nodemailer = require('nodemailer');
 let sendEmail = async function (email, secretToken) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
-        host: 'smpt.gmail.com',
         auth: {
             user: process.env.EMAIL,
             pass: process.env.PASSWORD
+        },
+        tls: {
+            rejectUnauthorized: false,  
+            secureProtocol: "TLSv1_method" 
         }
     });
 
     let mailOptions = {
-        from: 'yabba3times@gmail.com',
+        from: process.env.EMAIL,
         to: email,
         subject: "Hello ✔",
         text: `Hello! Thanks for registering!<br>
