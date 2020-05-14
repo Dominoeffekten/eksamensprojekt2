@@ -71,7 +71,10 @@ exports.postRegister = async function (req, res) {
                     password,
                     secretToken
                 });
+<<<<<<< HEAD
                 let mail = mailer.sendEmail(email, secretToken);
+=======
+>>>>>>> 96862d63f88ecf15ff081d72eda061b102136524
 
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
                     if (err) throw err;
@@ -87,6 +90,10 @@ exports.postRegister = async function (req, res) {
                         })
                         .catch(err => console.log(err));
                 });
+<<<<<<< HEAD
+=======
+                mailer.sendEmail(email, secretToken);
+>>>>>>> 96862d63f88ecf15ff081d72eda061b102136524
             }
 
         });
