@@ -1,18 +1,14 @@
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 //const config = require('../config/mailer');
-<<<<<<< HEAD
 
 let sendEmail = async function (email, secretToken) {
-=======
-/*
-let email = async function (toEmail, secretToken) {
->>>>>>> 77a8a76a52791753e5fc8213b226c2c968102544
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'yabba3times@gmail.com',
-            pass: '@yabba1234'
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
         }
     });
 
@@ -45,17 +41,20 @@ let email = async function (toEmail, secretToken) {
         }
     });
 }
-module.exports = email;
-*/
-const sendEmail = async function (toEmail, secretToken) {
+module.exports = sendEmail;
+/*
+//Sunes kode
+const sendEmail = async (toEmail, secretToken) => {
     // 1) Create a transporter
     const transporter = nodemailer.createTransport({
-        host: "localhost",
-        port: 3000,
-        tls: { 
-            rejectUnauthorized: false 
-        } 
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
+        auth: {
+            user: process.env.EMAIL_USERNAME,
+            pass: process.env.EMAIL_PASSWORD,
+        },
     });
+
     // 2) Define the email options
     const mailOptions = {
         from: 'Yadda Yadda Yadda <noreply@yaddayaddayadda.com>',
@@ -77,14 +76,18 @@ const sendEmail = async function (toEmail, secretToken) {
         <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
         Have a Yabba day! `,
     };
+
     // 3) Actually send the email
     await transporter.sendMail(mailOptions);
 };
-module.exports = sendEmail;
+
+
+*/
 /*
 exports.sendEmail = async function(toEmail, secretToken) {
     console.log(toEmail);
     console.log(secretToken);
+
     // 1) Create a transporter
     var transport = nodemailer.createTransport({
         host: "localhost",
@@ -92,6 +95,7 @@ exports.sendEmail = async function(toEmail, secretToken) {
         tls: {
             rejectUnauthorized: false
         },
+
     });
     // 2) Define the email options
     var message = {
@@ -133,6 +137,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             transport.sendMail({ from, subject, to, html }, (err, info) => {
                 if (err) reject(err);
+
                 resolve(info);
             })
         })

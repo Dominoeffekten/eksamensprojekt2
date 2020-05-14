@@ -87,10 +87,7 @@ exports.postRegister = async function (req, res) {
                         })
                         .catch(err => console.log(err));
                 });
-<<<<<<< HEAD
                 sendEmail(email, secretToken);
-=======
->>>>>>> 77a8a76a52791753e5fc8213b226c2c968102544
             }
 
         });
