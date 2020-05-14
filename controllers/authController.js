@@ -63,7 +63,6 @@ exports.postRegister = async function (req, res) {
                 //Generate secret token
                 const secretToken = randomstring.generate();
 
-
                 const newUser = new User({
                     username,
                     firstName,
@@ -72,25 +71,7 @@ exports.postRegister = async function (req, res) {
                     password,
                     secretToken
                 });
-                /*
-                                // Compose email
-                                const html = `Hello!
-                                <br>
-                                Thanks for registering!
-                                <br>
-                                You can soon begin to Yabba.
-                                <br><br>
-                                Verify Your email by typing this token:
-                                <br>
-                                <br>${secretToken}</br>
-                                On the following page:
-                                <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a>
-                                <br><br>
-                                Have a Yabba day! `;
-                
-                                // Send the email
-                                mailer.sendEmail('admin@yabba.com', email, 'Please verify your email', html)
-                                */
+
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
                     if (err) throw err;
                     newUser.password = hash;
@@ -105,7 +86,7 @@ exports.postRegister = async function (req, res) {
                         })
                         .catch(err => console.log(err));
                 });
-                let mail = mailer.sendEmail(email, secretToken);
+                mailer.sendEmail(email, secretToken);
             }
 
         });
