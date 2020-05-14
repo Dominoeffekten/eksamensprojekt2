@@ -71,7 +71,10 @@ exports.postRegister = async function (req, res) {
                     password,
                     secretToken
                 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> fd1140a29a7ac70ed5053c7faa331e0403b60d4a
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
                     if (err) throw err;
                     newUser.password = hash;
