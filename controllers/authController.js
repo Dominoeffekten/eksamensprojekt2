@@ -155,7 +155,8 @@ exports.postReply = async function (req, res, next) {
     });
     let cs = await mon.create(Post, post);
     console.log(cs);
-    res.redirect(req.get('referer'));
+    //res.redirect(req.get('referer'));
+    res.redirect("/dashboard");
 };
 
 exports.login = function (req, res) { // vis login siden

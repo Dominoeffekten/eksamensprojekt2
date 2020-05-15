@@ -25,7 +25,7 @@ let sendEmail = async function (email, secretToken) {
         Verify Your email by typing this token: <br>
         <br> `+ secretToken + `<br>
         On the following page:
-        <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
+        <a href="http://localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
         Have a Yabba day!`,
         html: `Hello! <br>
         Thanks for registering! <br>
