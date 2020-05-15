@@ -170,7 +170,6 @@ const showUsers = function (e) { //viser avatar billedet
     const showUser = function (e) {
         let user = JSON.parse(e.target.responseText);
         let ownUser = user.username;
-        let otherUser = $("otherUser").innerText;
         let count = 0;
         console.log(ownUser);
         if ($("followersCount")) {
@@ -205,6 +204,7 @@ const showUsers = function (e) { //viser avatar billedet
             }
         }
         if ($("followersCounts")) {
+            let otherUser = $("otherUser").innerText;
             console.log(users);
             console.log(otherUser);
             for (var i = 0; i < users.length; i++) {
