@@ -20,20 +20,18 @@ let sendEmail = async function (email, secretToken) {
         from: 'Team Yabba',
         to: email,
         subject: "Hello ✔",
-        text: `Hello! Thanks for registering!<br>
-        You can soon begin to Yabba.<br>
+        text: `Hello! Thanks for registering!<br><br>
+        You can soon begin to Yabba.<br><br>
         Verify Your email by typing this token: <br>
-        <br> `+ secretToken + `<br>
-        On the following page:
-        <a href="http://localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
+        <br> `+ secretToken + `<br><br>
         Have a Yabba day!`,
-        html: `Hello! <br>
-        Thanks for registering! <br>
+        html: `Hello! <br><br>
+        Thanks for registering! <br><br>
         You can soon begin to Yabba. <br><br>
         Verify Your email by typing this token: <br>
-        <br>`+ secretToken + `</br>
+        <br>`+ secretToken + `</br><br>
         On the following page:
-        <a href="localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
+        <a href="https://localhost:3000/users/verifyemail>localhost:3000/users/verifyemail</a> <br><br>
         Have a Yabba day! `,
     };
 
